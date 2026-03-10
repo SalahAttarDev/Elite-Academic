@@ -1,0 +1,102 @@
+/* styles/global.css */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+/* --- 1. THEME VARIABLES (Light & Dark Mode Colors) --- */
+:root {
+    /* Dark Mode (Default) */
+    --bg-color: #050505;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --grid-line: rgba(255, 255, 255, 0.03);
+    /* The faint, always-visible grid */
+    --grid-glow: rgba(167, 139, 250, 0.4);
+    /* The bright purple highlight */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="light"] {
+    /* Light Mode */
+    --bg-color: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --grid-line: rgba(0, 0, 0, 0.04);
+    /* The faint, always-visible grid */
+    --grid-glow: rgba(139, 92, 246, 0.5);
+    /* The bright purple highlight */
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(0, 0, 0, 0.03);
+}
+
+/* --- 2. ARABIC TYPOGRAPHY OVERRIDES --- */
+html[lang="ar"] body,
+html[lang="ar"] button {
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+}
+
+html[lang="ar"] * {
+    letter-spacing: normal !important;
+}
+
+html[lang="ar"] p,
+html[lang="ar"] .subtitle-main,
+html[lang="ar"] .cap-subtitle {
+    line-height: 1.8;
+}
+
+/* --- 3. MASTER BODY LOGIC --- */
+body {
+    background-color: var(--bg-color);
+    /* Uses dynamic variable */
+    color: var(--text-primary);
+    /* Uses dynamic variable */
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* --- 4. THE GLOBAL DYNAMIC GRID --- */
+/* --- LAYER 1: The Static, Always-Visible Base Grid --- */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    transition: background-image 0.4s ease;
+
+    /* Uses the faint var(--grid-line) */
+    background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 60px 60px;
+
+    /* NO MASK HERE - This layer is always visible */
+}
+
+/* --- LAYER 2: The Colored Hover Grid --- */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    transition: background-image 0.4s ease;
+
+    /* Uses the bright var(--grid-glow) */
+    background-image:
+        linear-gradient(to right, var(--grid-glow) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-glow) 1px, transparent 1px);
+    background-size: 60px 60px;
+
+    /* High-tech mask: The purple grid ONLY shows near the mouse */
+    mask-image: radial-gradient(circle 350px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            black 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle 350px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            black 0%, transparent 100%);
+}
+
+section {
+    background: transparent !important;
+}

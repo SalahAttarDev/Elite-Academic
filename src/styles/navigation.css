@@ -1,0 +1,182 @@
+/* Core Header: Razor thin, dynamic glassmorphism */
+.tech-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background: var(--glass-bg);
+    /* FIXED: Adapts to theme */
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+    /* FIXED: Adapts to theme */
+    z-index: 9999;
+    transition: background 0.4s ease, border 0.4s ease;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 1.5rem;
+}
+
+/* 3-Column Layout Engineering */
+.header-left,
+.header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    justify-content: flex-end;
+    gap: 1rem;
+    /* Spacing between toggles and CTA */
+}
+
+.header-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+/* --- Brand Logo --- */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+    /* FIXED */
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+/* --- Navigation Links --- */
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    color: var(--text-secondary);
+    /* FIXED */
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: var(--text-primary);
+    /* FIXED */
+}
+
+/* --- Action Dock: The Toggle Container --- */
+.action-dock {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon-btn,
+.lang-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lang-btn {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+}
+
+.icon-btn:hover,
+.lang-btn:hover {
+    color: var(--text-primary);
+    background: var(--glass-border);
+}
+
+/* --- CTA Micro Button --- */
+.btn-micro {
+    background: var(--text-primary);
+    /* Black in Light mode, White in Dark mode */
+    color: var(--bg-color);
+    /* The opposite of the text primary */
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-micro:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+/* --- RTL / Arabic Support --- */
+html[lang="ar"] .header-container,
+html[lang="ar"] .nav-links,
+html[lang="ar"] .header-right {
+    flex-direction: row-reverse;
+}
+
+/* --- Mobile Refinement --- */
+@media (max-width: 768px) {
+    .header-center {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-color);
+        /* Adapts to theme background */
+        border-bottom: 1px solid var(--glass-border);
+        padding: 2rem 0;
+        flex-direction: column;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .header-center.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+    }
+}
