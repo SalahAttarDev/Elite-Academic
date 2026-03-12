@@ -11,7 +11,6 @@ import renderProcess from './Process.js';
 import renderServices from './Services.js';
 export default function renderAllPages() {
     return [
-        renderChatWidget,
         renderGlobalCursor,
         renderNavigation,
         renderHome,
@@ -22,5 +21,6 @@ export default function renderAllPages() {
         renderFAQ,
         renderContact,
         renderFooter,
+        renderChatWidget,
     ];
 }

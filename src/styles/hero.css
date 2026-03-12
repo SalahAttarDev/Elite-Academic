@@ -222,6 +222,10 @@
         max-width: 300px;
     }
 
+    .hero-buttons {
+        flex-direction: column;
+    }
+
     .hero-guarantees-wrapper {
         margin-top: 3rem;
     }
