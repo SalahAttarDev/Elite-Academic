@@ -40,7 +40,7 @@ export default function renderChatWidget() {
             const closeBtn = document.getElementById('qx-chat-close');
 
             if (widget && toggleBtn && closeBtn) {
-                // Toggle open/close classes
+                // Toggle open/close classes on click
                 const toggleChat = () => {
                     widget.classList.toggle('is-open');
                 };
@@ -48,12 +48,8 @@ export default function renderChatWidget() {
                 toggleBtn.addEventListener('click', toggleChat);
                 closeBtn.addEventListener('click', toggleChat);
 
-                // Optional: Auto-pop open after 15 seconds to grab attention
-                setTimeout(() => {
-                    if (!widget.classList.contains('is-open')) {
-                        widget.classList.add('is-open');
-                    }
-                }, 15000);
+                // Note: The 15-second setTimeout has been completely removed.
+                // The widget will now only appear upon manual user interaction.
             }
 
             return () => { };

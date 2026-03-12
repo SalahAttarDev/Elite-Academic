@@ -1,23 +1,25 @@
 /* =========================================
-   FLOATING EMERGENCY CHAT WIDGET (THEME FIXED)
+   FLOATING EMERGENCY CHAT WIDGET
    ========================================= */
 
 .qx-chat-widget {
     position: fixed;
     bottom: 1.5rem;
-    /* Pushes it closer to the bottom edge */
     right: 2rem;
-    /* Pushes it closer to the right edge */
     z-index: 99999;
-    /* Maxed out so nothing ever overlaps it */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
+    /* FIX 1: Forces the widget to hug the right side */
     gap: 1rem;
+    pointer-events: none;
+    /* FIX 2: Makes the invisible bounding box ignore clicks */
 }
 
 /* --- The Glass Panel --- */
 .qx-chat-panel {
+    pointer-events: auto;
+    /* FIX 3: Re-enables clicks specifically for the panel */
     width: 320px;
 
     /* Default Dark Mode Glass */
@@ -37,7 +39,7 @@
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* CRITICAL FIX: Explicit Light Mode Support using your global data-theme */
+/* Light Mode Support */
 [data-theme="light"] .qx-chat-panel {
     background: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -160,6 +162,8 @@
 
 /* --- The Floating Toggle Button --- */
 .qx-chat-toggle {
+    pointer-events: auto;
+    /* FIX 4: Re-enables clicks specifically for the button */
     width: 65px;
     height: 65px;
     border-radius: 50%;
@@ -208,7 +212,7 @@
     transition: transform 0.3s ease;
 }
 
-/* When open, widget inherits the theme background so it's visible in light & dark mode */
+/* When open, widget inherits the theme background */
 .qx-chat-widget.is-open .qx-chat-toggle {
     transform: scale(0.9);
     background: var(--bg-color);
@@ -226,7 +230,6 @@
 @media (max-width: 768px) {
     .qx-chat-widget {
         bottom: 1rem;
-        /* Extremely tight to the corner on phones */
         right: 1rem;
     }
 
