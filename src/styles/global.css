@@ -119,3 +119,32 @@ body {
     position: relative;
     transition: background-color 0.4s ease, color 0.4s ease;
 }
+
+
+/* =========================================
+   PERFORMANCE FIXES FOR MOBILE (ANTI-LAG)
+   ========================================= */
+@media (hover: none) and (pointer: coarse),
+(max-width: 768px) {
+
+    /* 1. Disable the heavy mouse-tracking grid on phones */
+    body::after {
+        display: none !important;
+    }
+
+    /* 2. Hide massive blur orbs that choke mobile GPUs */
+    .qx-ambient-glow,
+    .cases-glow,
+    .faq-glow,
+    .ambient-glow {
+        display: none !important;
+    }
+
+    /* 3. Reduce glassmorphism blur intensity on phones */
+    .qx-form-wrapper,
+    .qx-case-bento,
+    .protocol-card {
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+    }
+}
