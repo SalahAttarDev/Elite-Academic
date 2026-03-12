@@ -41,23 +41,10 @@ export default function renderContact() {
                                     </div>
                                     <svg class="qx-social-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                                 </a>
-
-                                <a href="https://instagram.com/YOUR_HANDLE" target="_blank" class="qx-social-row instagram">
-                                    <div class="qx-social-icon">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                                    </div>
-                                    <div class="qx-social-text">
-                                        <span class="qx-social-name">Instagram</span>
-                                        <span class="qx-social-desc">Send voice notes & images</span>
-                                    </div>
-                                    <svg class="qx-social-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                </a>
                             </div>
                         </div>
 
                         <div class="qx-form-wrapper fade-up" style="transition-delay: 0.1s;">
-                            <div class="qx-form-spotlight"></div>
-
                             <form id="qx-contact-form" class="qx-form-inner">
                                 <div class="qx-input-group">
                                     <div class="qx-input-block">
@@ -70,29 +57,6 @@ export default function renderContact() {
                                     </div>
                                 </div>
 
-                                <div class="qx-input-group">
-                                    <div class="qx-input-block">
-                                        <label>Region</label>
-                                        <select required>
-                                            <option value="" disabled selected>Select Region</option>
-                                            <option value="Middle East">Middle East & Arab Region</option>
-                                            <option value="Europe">Europe / UK</option>
-                                            <option value="North America">North America</option>
-                                            <option value="Asia">Asia / Pacific</option>
-                                        </select>
-                                    </div>
-                                    <div class="qx-input-block">
-                                        <label>Est. Budget (USD)</label>
-                                        <select required>
-                                            <option value="" disabled selected>Select Budget</option>
-                                            <option value="Under $50">Under $50 (Minor fixes)</option>
-                                            <option value="$50 - $100">$50 - $100 (Standard task)</option>
-                                            <option value="$100 - $300">$100 - $300 (Projects)</option>
-                                            <option value="$300+">$300+ (Full reports/apps)</option>
-                                        </select>
-                                    </div>
-                                </div>
-
                                 <div class="qx-input-block">
                                     <label>Deadline</label>
                                     <input type="text" placeholder="e.g., Tomorrow at 10 AM" required />
@@ -100,7 +64,18 @@ export default function renderContact() {
 
                                 <div class="qx-input-block">
                                     <label>Task Details</label>
-                                    <textarea rows="4" placeholder="Paste your rubric, requirements, or explain what you need help with..." required></textarea>
+                                    <textarea rows="4" placeholder="Explain what you need help with..." required></textarea>
+                                </div>
+
+                                <div class="qx-input-block">
+                                    <label>Project Files & Rubric (PDF, ZIP)</label>
+                                    <div class="qx-file-dropzone" id="file-dropzone">
+                                        <input type="file" id="file-input" class="hidden-file-input" multiple />
+                                        <div class="dropzone-content">
+                                            <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                            <span class="drop-text" id="drop-text">Drag files here or click to browse</span>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <button type="submit" class="qx-submit-btn">
@@ -115,7 +90,7 @@ export default function renderContact() {
             </section>
         `,
         mount: () => {
-            // General Fade Up Logic
+            // Fade Up Logic
             const elements = document.querySelectorAll('#contact .fade-up');
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
@@ -126,21 +101,49 @@ export default function renderContact() {
                 elements.forEach(el => observer.observe(el));
             }
 
-            // Smooth Spotlight Logic (No layout breaking 3D tilts)
-            const formWrapper = document.querySelector('.qx-form-wrapper');
-            const spotlight = document.querySelector('.qx-form-spotlight');
+            // File Drag & Drop Logic
+            const dropzone = document.getElementById('file-dropzone');
+            const fileInput = document.getElementById('file-input');
+            const dropText = document.getElementById('drop-text');
 
-            if (formWrapper && spotlight) {
-                formWrapper.addEventListener('mousemove', (e) => {
-                    const rect = formWrapper.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    spotlight.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(139, 92, 246, 0.08), transparent 40%)`;
+            if (dropzone && fileInput) {
+                dropzone.addEventListener('click', () => fileInput.click());
+
+                dropzone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    dropzone.classList.add('drag-active');
                 });
 
-                formWrapper.addEventListener('mouseleave', () => {
-                    spotlight.style.background = `none`;
+                dropzone.addEventListener('dragleave', () => {
+                    dropzone.classList.remove('drag-active');
                 });
+
+                dropzone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    dropzone.classList.remove('drag-active');
+                    if (e.dataTransfer.files.length) {
+                        fileInput.files = e.dataTransfer.files;
+                        updateFileText(e.dataTransfer.files);
+                    }
+                });
+
+                fileInput.addEventListener('change', (e) => {
+                    if (e.target.files.length) {
+                        updateFileText(e.target.files);
+                    }
+                });
+
+                function updateFileText(files) {
+                    if (files.length === 1) {
+                        dropText.textContent = `Attached: ${files[0].name}`;
+                        dropzone.style.borderColor = '#8b5cf6';
+                        dropzone.style.background = 'rgba(139, 92, 246, 0.05)';
+                    } else if (files.length > 1) {
+                        dropText.textContent = `Attached: ${files.length} files`;
+                        dropzone.style.borderColor = '#8b5cf6';
+                        dropzone.style.background = 'rgba(139, 92, 246, 0.05)';
+                    }
+                }
             }
 
             return () => { };

@@ -1,0 +1,246 @@
+/* =========================================
+   FLOATING EMERGENCY CHAT WIDGET (THEME FIXED)
+   ========================================= */
+
+.qx-chat-widget {
+    position: fixed;
+    bottom: 1.5rem;
+    /* Pushes it closer to the bottom edge */
+    right: 2rem;
+    /* Pushes it closer to the right edge */
+    z-index: 99999;
+    /* Maxed out so nothing ever overlaps it */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+/* --- The Glass Panel --- */
+.qx-chat-panel {
+    width: 320px;
+
+    /* Default Dark Mode Glass */
+    background: rgba(15, 15, 18, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+    /* Animation defaults (Hidden) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.95);
+    transform-origin: bottom right;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* CRITICAL FIX: Explicit Light Mode Support using your global data-theme */
+[data-theme="light"] .qx-chat-panel {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.qx-chat-widget.is-open .qx-chat-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* --- Panel Header --- */
+.qx-chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.qx-chat-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.qx-pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: #8b5cf6;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+    animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(139, 92, 246, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    }
+}
+
+.qx-chat-close {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.qx-chat-close:hover {
+    color: var(--text-primary);
+}
+
+.qx-chat-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- Panel Body --- */
+.qx-chat-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.qx-chat-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
+}
+
+.qx-chat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 0px;
+    background: #25D366;
+    /* WhatsApp Green */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+.qx-chat-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+    background: #20bd5a;
+}
+
+.qx-chat-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- The Floating Toggle Button --- */
+.qx-chat-toggle {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #8b5cf6;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s, color 0.3s;
+    position: relative;
+}
+
+/* The Radar Ping Animation */
+.qx-chat-toggle::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid #8b5cf6;
+    animation: qx-radar-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    z-index: -1;
+}
+
+@keyframes qx-radar-ping {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+.qx-chat-toggle:hover {
+    transform: scale(1.05);
+}
+
+.qx-chat-toggle svg {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.3s ease;
+}
+
+/* When open, widget inherits the theme background so it's visible in light & dark mode */
+.qx-chat-widget.is-open .qx-chat-toggle {
+    transform: scale(0.9);
+    background: var(--bg-color);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.qx-chat-widget.is-open .qx-chat-toggle::before {
+    display: none;
+    /* Stop pinging when open */
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .qx-chat-widget {
+        bottom: 1rem;
+        /* Extremely tight to the corner on phones */
+        right: 1rem;
+    }
+
+    .qx-chat-panel {
+        width: 300px;
+    }
+
+    .qx-chat-toggle {
+        width: 56px;
+        height: 56px;
+    }
+
+    .qx-chat-toggle svg {
+        width: 24px;
+        height: 24px;
+    }
+}

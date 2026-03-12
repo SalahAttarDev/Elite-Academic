@@ -1,0 +1,537 @@
+/* =========================================
+   CASE STUDIES: IDE, TERMINAL & PDF VIEWER
+   ========================================= */
+
+.qx-cases-section {
+    position: relative;
+    padding: 10rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    color: var(--text-primary);
+}
+
+.qx-cases-section * {
+    box-sizing: border-box;
+}
+
+.cases-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    background: #8b5cf6;
+    border-radius: 50%;
+    filter: blur(180px);
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.qx-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.qx-cases-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 2rem;
+}
+
+/* --- The Main Bento Layout --- */
+.qx-case-bento {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+[data-theme="light"] .qx-case-bento {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.qx-case-bento:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15), 0 0 30px rgba(139, 92, 246, 0.1);
+}
+
+/* --- Left Side: Info --- */
+.case-info {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.qx-case-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #8b5cf6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    width: max-content;
+    padding: 6px 14px;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 100px;
+}
+
+.qx-case-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 1.5rem 0;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+.case-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.case-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.case-text strong {
+    font-family: monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.case-text.crisis strong {
+    color: #ef4444;
+}
+
+.case-text.execution strong {
+    color: #3b82f6;
+}
+
+.qx-case-result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.qx-case-result svg {
+    width: 22px;
+    height: 22px;
+    color: #10b981;
+}
+
+/* --- IDE / Terminal Styles --- */
+.case-ide {
+    background: #0f111a;
+    border-left: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+[data-theme="light"] .case-ide {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.qx-case-bento.reverse .case-ide {
+    border-left: none;
+    border-right: 1px solid var(--glass-border);
+}
+
+[data-theme="light"] .qx-case-bento.reverse .case-ide {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ide-header {
+    display: flex;
+    align-items: center;
+    background: #1a1d27;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #2a2e3d;
+}
+
+.terminal-header {
+    background: #1e1e1e;
+    border-bottom: 1px solid #333;
+}
+
+.ide-mac-btns {
+    display: flex;
+    gap: 6px;
+    margin-right: 1.5rem;
+}
+
+.ide-mac-btns span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.ide-mac-btns span:nth-child(1) {
+    background: #ff5f56;
+}
+
+.ide-mac-btns span:nth-child(2) {
+    background: #ffbd2e;
+}
+
+.ide-mac-btns span:nth-child(3) {
+    background: #27c93f;
+}
+
+.ide-tab {
+    background: #0f111a;
+    color: #8a91a8;
+    padding: 4px 16px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    border: 1px solid #2a2e3d;
+    border-bottom: none;
+    margin-bottom: -13px;
+}
+
+.ide-body {
+    display: flex;
+    flex-grow: 1;
+}
+
+.ide-sidebar {
+    width: 35%;
+    border-right: 1px solid #2a2e3d;
+    padding: 1.5rem 1rem;
+    color: #5c6370;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    overflow-x: auto;
+}
+
+.ide-code {
+    width: 65%;
+    padding: 1.5rem;
+    color: #abb2bf;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.terminal-body .ide-code {
+    width: 100%;
+    color: #d4d4d4;
+}
+
+.ide-sidebar pre,
+.ide-code pre {
+    margin: 0;
+}
+
+.c-keyword {
+    color: #c678dd;
+}
+
+.c-method {
+    color: #61afef;
+}
+
+.c-string {
+    color: #98c379;
+}
+
+.c-comment {
+    color: #5c6370;
+    font-style: italic;
+}
+
+.c-term-prompt {
+    color: #98c379;
+    font-weight: bold;
+}
+
+.c-term-success {
+    color: #61afef;
+    font-weight: bold;
+}
+
+
+/* --- PDF Viewer Styles --- */
+.case-pdf-viewer {
+    background: #e5e7eb;
+    border-left: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.qx-case-bento.reverse .case-pdf-viewer {
+    border-left: none;
+    border-right: 1px solid var(--glass-border);
+}
+
+[data-theme="light"] .qx-case-bento.reverse .case-pdf-viewer {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pdf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #374151;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #1f2937;
+}
+
+.pdf-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #4b5563;
+    color: #f3f4f6;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-family: system-ui, sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-tab svg {
+    width: 14px;
+    height: 14px;
+}
+
+.pdf-actions {
+    display: flex;
+    gap: 12px;
+    color: #9ca3af;
+}
+
+.pdf-actions svg {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.pdf-body {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+    overflow-y: hidden;
+}
+
+.pdf-paper {
+    background: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 2rem 1.5rem;
+    color: #111827;
+    font-family: 'Times New Roman', Times, serif;
+    position: relative;
+}
+
+.pdf-paper-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+.pdf-paper-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+}
+
+.pdf-math-block {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.pdf-math-block span {
+    border-bottom: 1px solid #111827;
+    display: inline-block;
+    padding: 0 2px;
+}
+
+.pdf-graph-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.pdf-svg-graph {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .qx-case-bento {
+        grid-template-columns: 1fr;
+    }
+
+    .qx-case-bento.reverse .case-ide,
+    .qx-case-bento.reverse .case-pdf-viewer {
+        order: 2;
+        /* Forces IDE/PDF to bottom on mobile */
+    }
+
+    .case-info {
+        padding: 2rem;
+    }
+
+    .case-ide,
+    .case-pdf-viewer {
+        border-left: none;
+        border-top: 1px solid var(--glass-border);
+    }
+
+    .qx-case-bento.reverse .case-ide,
+    .qx-case-bento.reverse .case-pdf-viewer {
+        border-right: none;
+        border-top: 1px solid var(--glass-border);
+    }
+
+    .ide-body {
+        flex-direction: column;
+    }
+
+    .ide-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #2a2e3d;
+        padding: 1rem;
+    }
+
+    .ide-code {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .pdf-paper {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* --- Split IDE / Terminal View (Java & Python) --- */
+.case-ide-split {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--glass-border);
+    background: #0f111a;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+[data-theme="light"] .case-ide-split {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ide-top {
+    flex: 6;
+    /* 60% of the height */
+    display: flex;
+    flex-direction: column;
+}
+
+.ide-bottom-terminal {
+    flex: 4;
+    /* 40% of the height */
+    background: #1e1e1e;
+    border-top: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-header-mini {
+    background: #252526;
+    color: #9cdcfe;
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.terminal-body-mini {
+    padding: 1rem 1.25rem;
+    color: #d4d4d4;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    overflow-y: auto;
+}
+
+/* Syntax Highlight Specifics */
+.c-term-info {
+    color: #e5c07b;
+    font-weight: bold;
+}
+
+/* Yellow/Orange */
+
+
+/* --- PDF Math Blocks & 3D SVG Graph --- */
+.matrix {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1.2;
+    border-left: 1px solid #111827;
+    border-right: 1px solid #111827;
+    padding: 0 4px;
+    margin-left: 8px;
+}
+
+.pdf-3d-graph {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(0 10px 10px rgba(139, 92, 246, 0.2));
+}
+
+/* Mobile Adjustments for Split Pane */
+@media (max-width: 992px) {
+    .case-ide-split {
+        border-left: none;
+        border-top: 1px solid var(--glass-border);
+    }
+
+    .ide-bottom-terminal {
+        min-height: 160px;
+        /* Ensure terminal is visible on mobile */
+    }
+}

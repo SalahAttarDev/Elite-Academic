@@ -58,3 +58,10 @@ window.addEventListener('languageChanged', () => {
         initApp(root);
     }
 });
+
+window.addEventListener("hashchange", () => {
+    let root = document.getElementById("root");
+    if (root) {
+        initApp(root);
+    }
+})

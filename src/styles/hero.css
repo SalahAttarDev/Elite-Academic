@@ -9,6 +9,7 @@
     overflow: hidden;
     background-color: transparent;
     /* Allows global theme to show through */
+    margin: 50px 0;
 }
 
 /* 1. The Fading Technical Grid */
@@ -47,7 +48,6 @@
     font-size: 0.875rem;
     color: #a78bfa;
     /* Soft purple brand color stays the same */
-    margin-bottom: 2rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     font-weight: 500;
@@ -163,4 +163,66 @@
 
 .btn-glass:hover .btn-icon {
     transform: translateX(4px);
+}
+
+/* --- NEW: Trust & Guarantees Row --- */
+.hero-guarantees-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.language-support-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    letter-spacing: 0.02em;
+}
+
+.hero-guarantees-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    backdrop-filter: blur(10px);
+}
+
+.guarantee-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.guarantee-item svg {
+    width: 18px;
+    height: 18px;
+    color: #8b5cf6;
+    /* Accent color matching your badge */
+}
+
+/* Responsive adjustments for guarantees */
+@media (max-width: 768px) {
+    .hero-guarantees-grid {
+        border-radius: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+        gap: 1rem;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .hero-guarantees-wrapper {
+        margin-top: 3rem;
+    }
 }
