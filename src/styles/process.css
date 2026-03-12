@@ -1,0 +1,311 @@
+/* =========================================
+   PROCESS TIMELINE: PROTOCOL STYLE
+   ========================================= */
+
+.protocol-section {
+    padding: 10rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    color: var(--text-primary);
+}
+
+.protocol-section * {
+    box-sizing: border-box;
+}
+
+/* Floating Ambient Icons */
+.proto-ambient-icon {
+    position: absolute;
+    z-index: 0;
+    opacity: 0.1;
+    pointer-events: none;
+    color: #8b5cf6;
+    transition: opacity 0.4s ease;
+}
+
+.proto-icon-1 {
+    top: 5%;
+    left: 2%;
+    width: 300px;
+    height: 300px;
+    animation: proto-float 15s ease-in-out infinite;
+}
+
+.proto-icon-2 {
+    top: 60%;
+    right: 2%;
+    width: 200px;
+    height: 200px;
+    animation: proto-float 20s ease-in-out infinite reverse;
+}
+
+@keyframes proto-float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-30px) rotate(10deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* Header */
+.protocol-header {
+    text-align: center;
+    margin-bottom: 8rem;
+    position: relative;
+    z-index: 2;
+}
+
+.neon-eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #8b5cf6;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 100px;
+    display: inline-block;
+}
+
+.protocol-title {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-top: 1rem;
+}
+
+.protocol-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* Timeline Container */
+.protocol-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    padding: 2rem 0;
+}
+
+/* The Line & Glow */
+.fiber-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--glass-border);
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.fiber-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #8b5cf6;
+    box-shadow: 0 0 15px #8b5cf6, 0 0 30px #8b5cf6;
+    height: 0%;
+    transition: height 0.1s ease-out;
+}
+
+/* Timeline Layout */
+.timeline-item {
+    position: relative;
+    width: 100%;
+    display: flex;
+    z-index: 2;
+}
+
+.timeline-item.left {
+    justify-content: flex-end;
+    padding-right: 50%;
+}
+
+.timeline-item.right {
+    justify-content: flex-start;
+    padding-left: 50%;
+}
+
+/* The Nodes */
+.timeline-node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: var(--bg-primary, #111);
+    border: 2px solid var(--text-secondary);
+    border-radius: 50%;
+    z-index: 3;
+    transition: all 0.4s ease;
+}
+
+.timeline-node.active {
+    background: #8b5cf6;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.8), 0 0 30px rgba(139, 92, 246, 0.4);
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+/* Protocol Cards (Glassmorphism + 3D) */
+.protocol-card {
+    width: 85%;
+    max-width: 500px;
+    /* FIX: Heavy Blur & Subtle Transparency */
+    background: rgba(128, 128, 128, 0.04);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 3.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: border-color 0.3s ease;
+}
+
+.timeline-item.left .protocol-card {
+    margin-right: 4rem;
+}
+
+.timeline-item.right .protocol-card {
+    margin-left: 4rem;
+}
+
+.protocol-card:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* Mouse-Tracking Glare */
+.protocol-glare {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.protocol-card:hover .protocol-glare {
+    opacity: 1;
+}
+
+/* FIX: Giant Background Number Moved to Bottom */
+.step-number {
+    position: absolute;
+    bottom: 5%;
+    /* Anchored to bottom */
+    right: 5%;
+    /* Anchored to right */
+    font-size: 8rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--glass-border);
+    z-index: 0;
+    transform: translateZ(-20px);
+    user-select: none;
+    line-height: 0.8;
+    opacity: 0.3;
+    /* Faded perfectly into the background */
+}
+
+.timeline-item.right .step-number {
+    left: 5%;
+    /* Mirrored for right side */
+    right: auto;
+}
+
+/* Card Content Area */
+.step-content {
+    position: relative;
+    z-index: 3;
+    transform: translateZ(30px);
+    /* 3D pop out effect */
+}
+
+/* FIX: Dedicated Icon Box */
+.step-icon {
+    width: 56px;
+    height: 56px;
+    color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    margin-bottom: 2rem;
+}
+
+.step-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.step-desc {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+    .fiber-line {
+        left: 30px;
+        transform: none;
+    }
+
+    .timeline-item.left,
+    .timeline-item.right {
+        padding: 0 0 0 80px;
+        justify-content: flex-start;
+    }
+
+    .timeline-item.left .protocol-card,
+    .timeline-item.right .protocol-card {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .timeline-node {
+        left: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .timeline-node.active {
+        transform: translateY(-50%) scale(1.3);
+    }
+
+    .protocol-title {
+        font-size: 2.5rem;
+    }
+}

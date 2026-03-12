@@ -9,7 +9,7 @@
     --text-secondary: #a1a1aa;
     --grid-line: rgba(255, 255, 255, 0.03);
     /* The faint, always-visible grid */
-    --grid-glow: rgba(167, 139, 250, 0.4);
+    --grid-glow: rgba(11, 65, 230, 0.4);
     /* The bright purple highlight */
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-bg: rgba(255, 255, 255, 0.03);

@@ -1,209 +1,382 @@
-/* styles/contact.css */
+/* =========================================
+   CONTACT SECTION: LIQUID GLASS (BUG-FREE)
+   ========================================= */
 
-.contact-section {
+.qx-contact-section {
     position: relative;
-    padding: 12rem 2rem 5rem 2rem;
-    background: transparent;
+    padding: 8rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
     color: var(--text-primary);
-    display: flex;
-    justify-content: center;
+    overflow: hidden;
 }
 
-.contact-container {
+.qx-contact-section * {
+    box-sizing: border-box;
+}
+
+/* Very subtle ambient glow strictly behind the section */
+.qx-ambient-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.qx-container {
+    position: relative;
+    z-index: 2;
     max-width: 1200px;
-    width: 100%;
+    margin: 0 auto;
 }
 
-.contact-grid {
+.qx-contact-grid {
     display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 10rem;
-    align-items: flex-start;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem;
+    align-items: center;
 }
 
-/* --- Left Side: Research Specs --- */
-.contact-title {
-    font-size: clamp(3.5rem, 6vw, 5rem);
+/* =========================================
+   LEFT SIDE: INFO & SOCIALS
+   ========================================= */
+.qx-contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.qx-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 100px;
+    color: #8b5cf6;
+    font-size: 0.8rem;
     font-weight: 700;
-    line-height: 0.95;
-    letter-spacing: -0.05em;
-    margin: 1rem 0 2rem 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: max-content;
+    margin-bottom: 2rem;
 }
 
-.contact-subtitle {
-    font-size: 1.15rem;
+.qx-pulse-dot {
+    width: 6px;
+    height: 6px;
+    background: #8b5cf6;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #8b5cf6;
+    animation: qx-pulse 2s infinite;
+}
+
+@keyframes qx-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(139, 92, 246, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    }
+}
+
+.qx-contact-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.qx-contact-subtitle {
+    font-size: 1.1rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+    max-width: 90%;
 }
 
-.research-specs {
+/* Sleek Social Rows */
+.qx-social-stack {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-}
-
-.spec-item {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.spec-code {
-    font-family: ui-monospace, monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
-    padding: 4px 8px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 4px;
-}
-
-.spec-data label {
-    display: block;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    margin-bottom: 4px;
-    letter-spacing: 0.1em;
-}
-
-.spec-data span {
-    font-weight: 500;
-    font-size: 1rem;
-}
-
-/* --- Right Side: Academic Form --- */
-.academic-form {
-    background: var(--bg-color);
-    border: 1px solid var(--glass-border);
-    padding: 4rem;
-    border-radius: 4px;
-    /* Sharper = More Academic */
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.2);
-}
-
-.form-header {
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--glass-border);
-    padding-bottom: 1rem;
-}
-
-.form-meta {
-    font-family: ui-monospace, monospace;
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    opacity: 0.6;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.input-group label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.academic-form input,
-.academic-form textarea,
-.academic-form select {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    padding: 1.25rem;
-    color: var(--text-primary);
-    border-radius: 2px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease, background 0.3s ease;
-}
-
-.academic-form input:focus,
-.academic-form textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    background: transparent;
-}
-
-.btn-prime {
-    background: var(--text-primary);
-    color: var(--bg-color);
-    border: none;
-    padding: 1.5rem;
-    font-weight: 700;
-    font-size: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 1rem;
-    cursor: pointer;
+}
+
+.qx-social-row {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    background: rgba(128, 128, 128, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text-primary);
     transition: all 0.3s ease;
-    border-radius: 2px;
 }
 
-.btn-prime:hover {
-    background: var(--accent);
-    color: white;
+.qx-social-row:hover {
+    transform: translateY(-3px);
+    background: rgba(128, 128, 128, 0.06);
 }
 
-.btn-prime svg {
+.qx-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(128, 128, 128, 0.08);
+    border-radius: 12px;
+    margin-right: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.qx-social-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.qx-social-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.qx-social-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.qx-social-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.qx-social-arrow {
     width: 20px;
     height: 20px;
-}
-
-/* --- Minimal Footer --- */
-.minimal-footer {
-    margin-top: 10rem;
-    border-top: 1px solid var(--glass-border);
-    padding: 4rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer-brand {
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-
-.footer-links {
-    display: flex;
-    gap: 3rem;
-}
-
-.footer-links a {
-    text-decoration: none;
     color: var(--text-secondary);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Brand Colors */
+.qx-social-row.whatsapp:hover {
+    border-color: #25D366;
+}
+
+.qx-social-row.whatsapp:hover .qx-social-icon {
+    background: rgba(37, 211, 102, 0.1);
+    color: #25D366;
+}
+
+.qx-social-row.whatsapp:hover .qx-social-arrow {
+    color: #25D366;
+    transform: translateX(5px);
+}
+
+.qx-social-row.telegram:hover {
+    border-color: #0088cc;
+}
+
+.qx-social-row.telegram:hover .qx-social-icon {
+    background: rgba(0, 136, 204, 0.1);
+    color: #0088cc;
+}
+
+.qx-social-row.telegram:hover .qx-social-arrow {
+    color: #0088cc;
+    transform: translateX(5px);
+}
+
+.qx-social-row.instagram:hover {
+    border-color: #E1306C;
+}
+
+.qx-social-row.instagram:hover .qx-social-icon {
+    background: rgba(225, 48, 108, 0.1);
+    color: #E1306C;
+}
+
+.qx-social-row.instagram:hover .qx-social-arrow {
+    color: #E1306C;
+    transform: translateX(5px);
+}
+
+/* =========================================
+   RIGHT SIDE: LIQUID GLASS FORM
+   ========================================= */
+.qx-form-wrapper {
+    position: relative;
+    background: rgba(128, 128, 128, 0.03);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 3rem;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+/* Mouse tracking light effect */
+.qx-form-spotlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: background 0.1s;
+}
+
+.qx-form-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.qx-input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.qx-input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.qx-input-block label {
     font-size: 0.85rem;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-primary);
 }
 
-.footer-links a:hover {
-    color: var(--accent);
+.qx-input-block input,
+.qx-input-block textarea,
+.qx-input-block select {
+    width: 100%;
+    background: rgba(128, 128, 128, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    font-family: inherit;
+    font-size: 16px;
+    /* Stops iOS Auto-zoom */
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
 }
 
+.qx-input-block input::placeholder,
+.qx-input-block textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.qx-input-block textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.qx-input-block input:focus,
+.qx-input-block textarea:focus,
+.qx-input-block select:focus {
+    border-color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.05);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+}
+
+.qx-input-block select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1.2rem center;
+    background-size: 1.2em;
+    cursor: pointer;
+}
+
+.qx-input-block select option {
+    background: var(--bg-primary, #111);
+    color: var(--text-primary);
+}
+
+/* =========================================
+   FIXED HIGH-CONTRAST SUBMIT BUTTON
+   ========================================= */
+.qx-submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    /* Hardcoded gradient so it NEVER turns invisible */
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: #ffffff !important;
+    /* Forces text to be white */
+    border: none;
+    border-radius: 12px;
+    padding: 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 10px 20px rgba(109, 40, 217, 0.2);
+}
+
+.qx-submit-btn svg {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.qx-submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(109, 40, 217, 0.3);
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.qx-submit-btn:hover svg {
+    transform: translateX(5px);
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
 @media (max-width: 992px) {
-    .contact-grid {
+    .qx-contact-grid {
         grid-template-columns: 1fr;
-        gap: 5rem;
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .qx-contact-section {
+        padding: 6rem 1.5rem;
     }
 
-    .academic-form {
-        padding: 2rem;
+    .qx-form-wrapper {
+        padding: 2rem 1.5rem;
     }
 
-    .form-row {
+    .qx-input-group {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }

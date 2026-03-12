@@ -9,7 +9,7 @@ export default function renderAbout() {
                     <div class="editorial-grid">
 
                         <div class="editorial-image-wrapper fade-up">
-                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" alt="Technical Engineering Workspace" class="editorial-img" />
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop" alt="Student Workspace and Notes" class="editorial-img" />
                         </div>
 
                         <div class="editorial-content fade-up" style="transition-delay: 0.1s;">
@@ -36,7 +36,6 @@ export default function renderAbout() {
             const elements = aboutSection.querySelectorAll('.fade-up');
             let observer;
 
-            // Ensure compatibility with browsers without IntersectionObserver
             if (!('IntersectionObserver' in window)) {
                 elements.forEach(el => el.classList.add('is-visible'));
             } else {
@@ -54,7 +53,6 @@ export default function renderAbout() {
                 elements.forEach(el => observer.observe(el));
             }
 
-            // Cleanup observer to prevent memory leaks during re-renders
             return () => {
                 if (observer) observer.disconnect();
             };

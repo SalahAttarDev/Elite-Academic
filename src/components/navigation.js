@@ -1,53 +1,60 @@
 import "../styles/navigation.css";
 import { getLanguage, setLanguage, t } from "../utils/i18n.js";
-import { getTheme, toggleTheme } from "../utils/theme.js"; // <-- Import theme logic
+import { getTheme, toggleTheme } from "../utils/theme.js";
 
 export default function renderNavigation() {
     const currentLang = getLanguage();
     const oppositeLang = currentLang === 'en' ? 'ar' : 'en';
-    const langLabel = currentLang === 'en' ? 'العربية' : 'EN';
+
+    // Premium Globe SVG
+    const langIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`;
 
     const currentTheme = getTheme();
-    // Sun icon for dark mode (click to light), Moon icon for light mode (click to dark)
+    // Theme Icons
     const themeIcon = currentTheme === 'dark'
-        ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`
-        : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+        ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`
+        : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
 
     return {
         html: `
-            <header class="tech-header" id="main-nav">
-                <div class="header-container">
+            <header class="qx-navbar-wrapper" id="main-nav">
+                <div class="qx-navbar-pill">
 
-                    <div class="header-left">
-                        <a href="/" class="brand-logo" data-link>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polygon points="12 2 2 22 22 22"></polygon>
-                            </svg>
-                            <span>${t('nav.brand')}</span>
+                    <div class="qx-nav-brand">
+                        <a href="#hero" class="qx-brand-link">
+                            <span class="qx-brand-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12 2 2 22 22 22"></polygon>
+                                </svg>
+                            </span>
+                            <span class="qx-brand-name">Qodix<span class="qx-accent-dot">.</span></span>
                         </a>
                     </div>
 
-                    <nav class="header-center">
-                        <ul id="primary-menu" class="nav-links">
-                            <li><a href="/" class="nav-item active" data-link>${t('nav.overview')}</a></li>
-                            <li><a href="/disciplines" class="nav-item" data-link>${t('nav.services')}</a></li>
+                    <nav class="qx-nav-menu" id="nav-menu">
+                        <ul class="qx-nav-list">
+                            <li><a href="#hero" class="qx-nav-item active">${t('nav.overview') || 'Overview'}</a></li>
+                            <li><a href="#services" class="qx-nav-item">${t('nav.services') || 'Disciplines'}</a></li>
+                            <li><a href="#process" class="qx-nav-item">Process</a></li>
                         </ul>
                     </nav>
 
-                    <div class="header-right">
+                    <div class="qx-nav-actions">
 
-                        <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                        <button id="theme-toggle" class="qx-icon-btn" aria-label="Toggle Theme" title="Toggle Theme">
                             ${themeIcon}
                         </button>
 
-                        <button id="lang-toggle" class="lang-btn" data-target-lang="${oppositeLang}">
-                            ${langLabel}
+                        <button id="lang-toggle" class="qx-icon-btn" aria-label="Change Language" title="Change Language" data-target-lang="${oppositeLang}">
+                            ${langIcon}
                         </button>
 
-                        <a href="/request" class="btn-micro" data-link>${t('nav.cta')}</a>
+                        <a href="#contact" class="qx-nav-cta">
+                            ${t('nav.cta') || 'Get a Quote'}
+                        </a>
 
-                        <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Menu">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <button class="qx-mobile-toggle" id="mobile-toggle" aria-label="Open Menu">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="4" y1="12" x2="20" y2="12"></line>
                                 <line x1="4" y1="6" x2="20" y2="6"></line>
                                 <line x1="4" y1="18" x2="20" y2="18"></line>
@@ -63,24 +70,31 @@ export default function renderNavigation() {
             const langToggle = document.getElementById('lang-toggle');
             const themeToggle = document.getElementById('theme-toggle');
             const mobileToggle = document.getElementById('mobile-toggle');
-            const navLinks = document.querySelector('.header-center');
+            const navMenu = document.getElementById('nav-menu');
 
-            // Language Toggle Logic
+            // Scroll Effect: Glass Morphism intensifies on scroll
+            const handleScroll = () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            };
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            handleScroll();
+
             const handleLangClick = (e) => {
                 const newLang = e.currentTarget.getAttribute('data-target-lang');
                 setLanguage(newLang);
             };
 
-            // Theme Toggle Logic
             const handleThemeClick = () => {
                 toggleTheme();
-                // Dispatch event so main.js re-renders the navbar icon
                 window.dispatchEvent(new Event('languageChanged'));
             };
 
-            // Mobile Menu Logic
             const toggleMenu = () => {
-                if (navLinks) navLinks.classList.toggle('show');
+                if (navbar) navbar.classList.toggle('menu-open');
             };
 
             const handleToggleClick = (e) => {
@@ -89,8 +103,8 @@ export default function renderNavigation() {
             };
 
             const handleOutsideClick = (e) => {
-                if (navLinks && navLinks.classList.contains('show') && !navbar.contains(e.target)) {
-                    navLinks.classList.remove('show');
+                if (navbar && navbar.classList.contains('menu-open') && !navbar.contains(e.target)) {
+                    navbar.classList.remove('menu-open');
                 }
             };
 
@@ -100,6 +114,7 @@ export default function renderNavigation() {
             document.addEventListener('click', handleOutsideClick);
 
             return () => {
+                window.removeEventListener('scroll', handleScroll);
                 if (langToggle) langToggle.removeEventListener('click', handleLangClick);
                 if (themeToggle) themeToggle.removeEventListener('click', handleThemeClick);
                 if (mobileToggle) mobileToggle.removeEventListener('click', handleToggleClick);

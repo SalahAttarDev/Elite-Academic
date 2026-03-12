@@ -4,9 +4,7 @@
     position: relative;
     padding: 8rem 2rem;
     background: transparent;
-    /* Ensures smooth flow from the Hero section */
     color: var(--text-primary);
-    /* FIXED: Adapts to theme */
     display: flex;
     justify-content: center;
 }
@@ -27,28 +25,27 @@
 .editorial-image-wrapper {
     width: 100%;
     aspect-ratio: 4 / 5;
-    /* Tall, editorial aspect ratio */
-    border-radius: 8px;
-    /* Slight rounding, not overly stylized */
+    border-radius: 12px;
+    /* Slightly softer corners for a friendlier feel */
     overflow: hidden;
-    /* FIXED: Using dynamic glass border */
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Softer than the glass border */
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
+    /* Warmer, more dispersed shadow */
+    order: 1;
+    /* Ensures it stays on the left */
 }
 
 .editorial-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(30%);
-    /* Slightly moody */
-    transition: filter 0.6s ease, transform 0.6s ease;
+    /* Removed the cold grayscale filter to make it feel vibrant and human */
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .editorial-image-wrapper:hover .editorial-img {
-    filter: grayscale(0%);
-    transform: scale(1.03);
-    /* Subtle zoom on hover */
+    transform: scale(1.04);
 }
 
 /* --- The Story Content --- */
@@ -56,6 +53,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    order: 2;
+    /* Ensures text stays on the right */
 }
 
 .editorial-title {
@@ -65,7 +64,6 @@
     margin-bottom: 2.5rem;
     letter-spacing: -1px;
     color: var(--text-primary);
-    /* FIXED: Adapts to theme */
 }
 
 .editorial-text {
@@ -77,8 +75,8 @@
 .editorial-text p {
     font-size: 16px;
     color: var(--text-secondary);
-    /* FIXED: Adapts to theme */
-    line-height: 1.7;
+    line-height: 1.8;
+    /* Increased slightly for better readability */
     margin: 0;
     font-weight: 400;
 }
@@ -87,7 +85,6 @@
 .editorial-text p:first-child {
     font-size: 20px;
     color: var(--text-primary);
-    /* FIXED: Adapts to theme */
     font-weight: 500;
     letter-spacing: -0.5px;
 }
@@ -96,14 +93,13 @@
 .editorial-signature {
     margin-top: 3rem;
     padding-top: 1.5rem;
-    /* FIXED: Using dynamic glass border */
     border-top: 1px solid var(--glass-border);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text-secondary);
-    /* FIXED: Adapts to theme */
-    font-weight: 600;
+    font-size: 14px;
+    /* Slightly larger, more readable signature */
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    /* Changed to primary to emphasize your name */
+    font-weight: 500;
 }
 
 /* --- Mobile Responsiveness --- */
@@ -115,9 +111,12 @@
 
     .editorial-image-wrapper {
         aspect-ratio: 16 / 9;
-        /* Wider image on mobile so it doesn't take up the whole screen */
         order: -1;
-        /* Puts the image on top of the text */
+        /* Puts the image on top of the text naturally on smaller screens */
+    }
+
+    .editorial-content {
+        order: 0;
     }
 
     .editorial-title {
