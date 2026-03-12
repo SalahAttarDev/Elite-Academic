@@ -46,39 +46,77 @@ export default function renderContact() {
 
                         <div class="qx-form-wrapper fade-up" style="transition-delay: 0.1s;">
                             <form id="qx-contact-form" class="qx-form-inner">
+
                                 <div class="qx-input-group">
                                     <div class="qx-input-block">
-                                        <label>Name / Nickname</label>
-                                        <input type="text" placeholder="How should I call you?" required />
+                                        <label>${t('contact.form.name') || 'Name / Nickname'}</label>
+                                        <input type="text" id="qx-in-name" placeholder="${t('contact.form.namePlace') || 'How should I call you?'}" required />
                                     </div>
                                     <div class="qx-input-block">
-                                        <label>Course / Subject</label>
-                                        <input type="text" placeholder="e.g. Intro to Java" required />
+                                        <label>${t('contact.form.contact') || 'Email / Phone'}</label>
+                                        <input type="text" id="qx-in-contact" placeholder="${t('contact.form.contactPlace') || 'How to reach you'}" required />
+                                    </div>
+                                </div>
+
+                                <div class="qx-input-group">
+                                    <div class="qx-input-block">
+                                        <label>${t('contact.form.subject') || 'Subject'}</label>
+                                        <input type="text" id="qx-in-subject" placeholder="${t('contact.form.subjectPlace') || 'e.g. Java'}" required />
+                                    </div>
+                                    <div class="qx-input-block">
+                                        <label>${t('contact.form.deadline') || 'Deadline'}</label>
+                                        <input type="text" id="qx-in-deadline" placeholder="${t('contact.form.deadlinePlace') || 'e.g. Tomorrow'}" required />
                                     </div>
                                 </div>
 
                                 <div class="qx-input-block">
-                                    <label>Deadline</label>
-                                    <input type="text" placeholder="e.g., Tomorrow at 10 AM" required />
+                                    <label>${t('contact.form.country') || 'Country'}</label>
+                                    <input type="text" id="qx-in-country" placeholder="${t('contact.form.countryPlace') || 'e.g. KSA, UAE, UK...'}" required />
                                 </div>
 
                                 <div class="qx-input-block">
-                                    <label>Task Details</label>
-                                    <textarea rows="4" placeholder="Explain what you need help with..." required></textarea>
+                                    <label>${t('contact.form.budget') || 'Estimated Budget'}</label>
+                                    <div class="qx-budget-row">
+                                        <label class="qx-budget-option">
+                                            <input type="radio" name="budget" value="< $10" required>
+                                            <span class="qx-budget-pill">&lt; $10</span>
+                                        </label>
+                                        <label class="qx-budget-option">
+                                            <input type="radio" name="budget" value="$10 - $25">
+                                            <span class="qx-budget-pill">$10 - $25</span>
+                                        </label>
+                                        <label class="qx-budget-option">
+                                            <input type="radio" name="budget" value="$25 - $50">
+                                            <span class="qx-budget-pill">$25 - $50</span>
+                                        </label>
+                                        <label class="qx-budget-option">
+                                            <input type="radio" name="budget" value="$50 - $100">
+                                            <span class="qx-budget-pill">$50 - $100</span>
+                                        </label>
+                                        <label class="qx-budget-option">
+                                            <input type="radio" name="budget" value="$100+">
+                                            <span class="qx-budget-pill">$100+</span>
+                                        </label>
+                                    </div>
                                 </div>
 
                                 <div class="qx-input-block">
-                                    <label>Project Files & Rubric (PDF, ZIP)</label>
+                                    <label>${t('contact.form.details') || 'Task Details'}</label>
+                                    <textarea id="qx-in-details" rows="4" placeholder="${t('contact.form.detailsPlace') || 'Explain what you need help with...'}" required></textarea>
+                                </div>
+
+                                <div class="qx-input-block">
+                                    <label>${t('contact.form.files') || 'Project Files (PDF, ZIP)'}</label>
                                     <div class="qx-file-dropzone" id="file-dropzone">
                                         <input type="file" id="file-input" class="hidden-file-input" multiple />
                                         <div class="dropzone-content">
                                             <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                                            <span class="drop-text" id="drop-text">Drag files here or click to browse</span>
+                                            <span class="drop-text" id="drop-text">${t('contact.form.dropzone') || 'Drag files here'}</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <button type="submit" class="qx-submit-btn">
+                                <button type="submit" class="qx-submit-btn" id="qx-submit-btn">
                                     <span class="btn-text">${t('contact.btnSubmit') || 'Submit Details'}</span>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                                 </button>
@@ -90,7 +128,7 @@ export default function renderContact() {
             </section>
         `,
         mount: () => {
-            // Fade Up Logic
+            // Intersection Observer for animations
             const elements = document.querySelectorAll('#contact .fade-up');
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
@@ -101,23 +139,18 @@ export default function renderContact() {
                 elements.forEach(el => observer.observe(el));
             }
 
-            // File Drag & Drop Logic
+            // Drag and Drop Logic
             const dropzone = document.getElementById('file-dropzone');
             const fileInput = document.getElementById('file-input');
             const dropText = document.getElementById('drop-text');
 
             if (dropzone && fileInput) {
                 dropzone.addEventListener('click', () => fileInput.click());
-
                 dropzone.addEventListener('dragover', (e) => {
                     e.preventDefault();
                     dropzone.classList.add('drag-active');
                 });
-
-                dropzone.addEventListener('dragleave', () => {
-                    dropzone.classList.remove('drag-active');
-                });
-
+                dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-active'));
                 dropzone.addEventListener('drop', (e) => {
                     e.preventDefault();
                     dropzone.classList.remove('drag-active');
@@ -126,24 +159,116 @@ export default function renderContact() {
                         updateFileText(e.dataTransfer.files);
                     }
                 });
-
                 fileInput.addEventListener('change', (e) => {
-                    if (e.target.files.length) {
-                        updateFileText(e.target.files);
-                    }
+                    if (e.target.files.length) updateFileText(e.target.files);
                 });
 
                 function updateFileText(files) {
                     if (files.length === 1) {
                         dropText.textContent = `Attached: ${files[0].name}`;
-                        dropzone.style.borderColor = '#8b5cf6';
-                        dropzone.style.background = 'rgba(139, 92, 246, 0.05)';
                     } else if (files.length > 1) {
                         dropText.textContent = `Attached: ${files.length} files`;
-                        dropzone.style.borderColor = '#8b5cf6';
-                        dropzone.style.background = 'rgba(139, 92, 246, 0.05)';
                     }
+                    dropzone.style.borderColor = '#8b5cf6';
+                    dropzone.style.background = 'rgba(139, 92, 246, 0.05)';
                 }
+            }
+
+            // TELEGRAM FORM SUBMISSION LOGIC
+            const form = document.getElementById('qx-contact-form');
+            const submitBtn = document.getElementById('qx-submit-btn');
+
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault(); // Prevent page reload
+
+                    // Your Telegram Credentials
+                    const BOT_TOKEN = '8176883089:AAHVd7tc6DCrwCGWU-hcbCj2yIb5KBwm1So';
+                    const CHAT_ID = '8348513865';
+
+                    // Change Button State to Loading
+                    const btnText = submitBtn.querySelector('.btn-text');
+                    const originalBtnText = btnText.innerText;
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = "0.7";
+                    btnText.innerText = "SENDING...";
+
+                    // 1. Gather all form data
+                    const name = document.getElementById('qx-in-name').value;
+                    const contactInfo = document.getElementById('qx-in-contact').value;
+                    const subject = document.getElementById('qx-in-subject').value;
+                    const deadline = document.getElementById('qx-in-deadline').value;
+                    const country = document.getElementById('qx-in-country').value;
+                    const details = document.getElementById('qx-in-details').value;
+
+                    // Get selected budget
+                    const budgetRadio = document.querySelector('input[name="budget"]:checked');
+                    const budget = budgetRadio ? budgetRadio.value : "Not specified";
+
+                    // The files to upload
+                    const files = fileInput.files;
+
+                    // 2. Format the Text Message
+                    const messageText = `🚨 *NEW ACADEMIC REQUEST*\n\n👤 *Name:* ${name}\n📞 *Contact:* ${contactInfo}\n🌍 *Country:* ${country}\n📚 *Subject:* ${subject}\n⏰ *Deadline:* ${deadline}\n💰 *Budget:* ${budget}\n\n📝 *Details:*\n${details}`;
+
+                    try {
+                        // 3. Send Text Message first (using sendMessage)
+                        const textResponse = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                chat_id: CHAT_ID,
+                                text: messageText,
+                                parse_mode: "Markdown"
+                            })
+                        });
+
+                        if (!textResponse.ok) throw new Error("Failed to send text data");
+
+                        // 4. Send Files one by one (if any exist)
+                        if (files.length > 0) {
+                            btnText.innerText = "UPLOADING FILES...";
+
+                            for (let i = 0; i < files.length; i++) {
+                                const formData = new FormData();
+                                formData.append('chat_id', CHAT_ID);
+                                formData.append('document', files[i]);
+
+                                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+                                    method: 'POST',
+                                    body: formData // No headers required for FormData, browser handles it
+                                });
+                            }
+                        }
+
+                        // 5. Success State
+                        btnText.innerText = "REQUEST SENT!";
+                        submitBtn.style.background = "#25D366"; // Success Green
+                        submitBtn.style.color = "#ffffff";
+                        submitBtn.style.borderColor = "#25D366";
+
+                        // Reset Form and Dropzone
+                        form.reset();
+                        dropText.textContent = t('contact.form.dropzone') || 'Drag files here';
+                        dropzone.style.borderColor = '';
+                        dropzone.style.background = '';
+
+                    } catch (error) {
+                        console.error("Telegram Error:", error);
+                        btnText.innerText = "ERROR - TRY WHATSAPP";
+                        submitBtn.style.background = "#ef4444"; // Error Red
+                    }
+
+                    // Reset button after 4 seconds
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = "1";
+                        submitBtn.style.background = "";
+                        submitBtn.style.color = "";
+                        submitBtn.style.borderColor = "";
+                        btnText.innerText = originalBtnText;
+                    }, 4000);
+                });
             }
 
             return () => { };

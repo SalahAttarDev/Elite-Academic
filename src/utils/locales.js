@@ -5,242 +5,359 @@ export const translations = {
             brand: "Qodix Academic",
             overview: "Overview",
             services: "Disciplines",
-            projects: "Case Studies",
-            cta: "Initiate Request"
+            projects: "Our Work",
+            cta: "Get Help Now"
         },
         hero: {
-            badge: "100% Confidential Academic Support",
-            title: "Overwhelmed by deadlines?<br/><span class='highlight-text'>Get expert help.</span>",
-            subtitle: "Reliable, high-quality assistance for university assignments, complex projects, and academic reports. Plagiarism-free and tailored to your grading rubric.",
+            badge: "100% Confidential & Plagiarism-Free",
+            title: "Code won't compile? Deadline at 8 AM?<br/><span class='highlight-text'>We've got your back.</span>",
+            subtitle: "Stop stressing over impossible rubrics. We provide clean, heavily commented code, complex math solutions, and standard IEEE reports so you can pass with confidence.",
             btnPrimary: "Get a Free Quote",
-            btnSecondary: "View Past Work",
-            supportText: "Native consultations available in English, Arabic & French.",
-            guarantee1: "100% Plagiarism-Free",
-            guarantee2: "Strict Confidentiality",
-            guarantee3: "On-Time Delivery"
+            btnSecondary: "See Past Grades",
+            supportText: "Native support in English, Arabic & French.",
+            guarantee1: "Zero Plagiarism",
+            guarantee2: "Total Anonymity",
+            guarantee3: "Runs on Your Machine"
         },
         disciplines: {
-            title: "Technical<br/>Disciplines.",
-            software: "Software Engineering",
-            softwareDesc: "Production-grade code for computer science projects, including custom algorithms, full-stack applications, and system architecture design.",
-            physics: "Quantitative & Physics",
-            physicsDesc: "Advanced mathematical modeling, data analysis, and physics simulations using Python, MATLAB, and rigorous analytical methods.",
-            reports: "Technical Documentation",
-            reportsDesc: "IEEE-standard project proposals, final year reports, and research papers formatted with absolute precision."
+            title: "What we<br/>actually do.",
+            software: "Computer Science & IT",
+            softwareDesc: "From simple OOP assignments to full-stack web apps and data structures. We write clean, commented code that actually compiles.",
+            physics: "Applied Math & Engineering",
+            physicsDesc: "Differential equations, physics simulations, and complex MATLAB projects solved with clear, step-by-step methodologies.",
+            reports: "Technical & Lab Reports",
+            reportsDesc: "FYP documentation, research papers, and lab reports formatted to strict university standards. Guaranteed to pass Turnitin."
         },
         contact: {
-            status: "AVAILABLE FOR NEW PROJECTS",
-            title: "Let's solve this.",
-            subtitle: "Need help fast? Slide into our DMs on Instagram, text us on WhatsApp, or drop your assignment details below.",
+            status: "ONLINE & READY",
+            title: "Let's fix this.",
+            subtitle: "Panicking about a project? Text us directly on WhatsApp or drop your assignment files below for an instant quote.",
             labelSpecs: "Response Time",
             valSpecs: "Under 30 Minutes",
-            labelScope: "Confidentiality",
-            valScope: "Strictly Anonymous",
-            btnSubmit: "Send Details",
-            whatsappBtn: "WhatsApp",
-            instagramBtn: "Instagram"
+            labelScope: "Privacy",
+            valScope: "100% Anonymous",
+            btnSubmit: "Send Assignment Details",
+            whatsappBtn: "WhatsApp (Fastest)",
+            instagramBtn: "Instagram",
+            form: {
+                name: "Name / Nickname",
+                namePlace: "How should I call you?",
+                contact: "Email or WhatsApp",
+                contactPlace: "Where can I reach you?",
+                subject: "Course / Subject",
+                subjectPlace: "e.g. Intro to Java",
+                deadline: "Deadline",
+                deadlinePlace: "e.g. Tomorrow at 10 AM",
+                country: "Country",
+                countryPlace: "e.g. Saudi Arabia, Malaysia...",
+                budget: "Estimated Budget",
+                budgetDefault: "Select Budget Range",
+                budget1: "Under $10 (Minor bug fixes)",
+                budget2: "$10 - $25 (Standard assignments)",
+                budget3: "$25 - $50 (Mid-size projects)",
+                budget4: "$50 - $100 (Advanced projects)",
+                budget5: "$100+ (Full systems / FYP)",
+                details: "Task Details",
+                detailsPlace: "Explain exactly what you need help with...",
+                files: "Project Files & Rubric (PDF, ZIP)",
+                dropzone: "Drag files here or click to browse"
+            }
         },
         about: {
-            title: "Your Dedicated<br/>Academic Partner.",
-            lead: "I understand the pressure of university deadlines. I've been there.",
-            body1: "Balancing multiple assignments, complex projects, and tight schedules can be overwhelming. That's why Qodix was built—to provide reliable, high-quality academic support when you need it most.",
-            body2: "Whether it's debugging a stubborn piece of code, structuring a research report, or tackling daily homework, you get direct, confidential help tailored to strict grading standards. No automated fluff, just genuine solutions.",
+            title: "Your Secret<br/>Academic Weapon.",
+            lead: "I know exactly what it's like to stare at a screen at 3 AM with broken code and a looming deadline.",
+            body1: "University is tough enough without having to figure out terrible professor instructions. Qodix was built to be the safety net I wish I had—a place you can go to get actual, working solutions when you're completely stuck.",
+            body2: "I don't use AI to write your code, and I don't recycle old projects. Whether it's fixing a segmentation fault, plotting a MATLAB graph, or writing your final year project, you get custom, heavily commented work that is guaranteed to get you an A.",
             signature: "Salah Attar — Founder, Qodix"
         },
         services: {
-            status: "CORE EXPERTISE",
-            title: "Academic Focus Areas.",
-            subtitle: "Specialized technical support tailored strictly to university grading rubrics.",
-            devTitle: "Computer Science & IT",
-            devDesc: "Code debugging, custom algorithms, web development, and lab environments (Databases, Kali Linux, etc).",
-            engTitle: "Engineering & Math",
-            engDesc: "Complex calculations, physics simulations, MATLAB projects, and detailed lab reports.",
-            writeTitle: "Technical Reports",
-            writeDesc: "IEEE-standard formatting, Final Year Projects (FYP), and structured research papers. 100% plagiarism-free."
+            status: "OUR EXPERTISE",
+            title: "How we save your grade.",
+            subtitle: "We don't just write code; we make sure you understand it so you can defend it.",
+            devTitle: "Programming & Web Dev",
+            devDesc: "Java, C++, Python, and full-stack React/Node.js apps. Delivered with inline comments so you know exactly how it works.",
+            engTitle: "Math & Algorithms",
+            engDesc: "Big-O optimization, MATLAB visualizations, and step-by-step calculus proofs.",
+            writeTitle: "Academic Writing",
+            writeDesc: "Zero-plagiarism research papers and IEEE reports. We even provide the Turnitin report for your peace of mind."
         },
         process: {
             status: "HOW IT WORKS",
-            title: "Zero-Friction Process.",
-            subtitle: "Getting expert help shouldn't be complicated. Here is how we guarantee results.",
-            step1Title: "1. Submit Prompt",
-            step1Desc: "Drop your assignment rubric, broken code, or deadline in the contact form below.",
-            step2Title: "2. Get a Quote",
-            step2Desc: "I review the requirements and provide a clear, upfront price and guaranteed delivery timeline.",
-            step3Title: "3. Secure Delivery",
-            step3Desc: "Receive completely original, highly-graded work formatted perfectly for your professor."
+            title: "Simple. Fast. Secure.",
+            subtitle: "No complicated sign-ups. Just send the brief and consider it done.",
+            step1Title: "1. Send the Rubric",
+            step1Desc: "Drop your PDF requirements or broken code in the form below, or send it via WhatsApp.",
+            step2Title: "2. Get a Fixed Price",
+            step2Desc: "We'll review it instantly and give you a fair, upfront price and a guaranteed delivery time.",
+            step3Title: "3. Download & Submit",
+            step3Desc: "Receive the working files, a plagiarism report, and instructions on how to run it on your laptop."
         },
         faq: {
-            status: "CLIENT INQUIRIES",
-            title: "Frequently Asked Questions.",
-            subtitle: "Total transparency regarding our academic protocols, security, and guarantees.",
-            q1: "Is this service completely confidential?",
-            a1: "Absolutely. We operate under strict anonymity protocols. Your personal details, university name, and assignment specifics are never shared, reused, or published. Once the project is delivered, your data is securely purged.",
-            q2: "Will the work pass Turnitin and AI detectors?",
-            a2: "Yes. Every line of code is written from scratch, and every report is custom-researched. We do not use recycled templates. We guarantee 100% original work that will cleanly pass Turnitin, SafeAssign, and standard AI detectors.",
-            q3: "What if the code doesn't run on my machine?",
-            a3: "We ensure all code works in standard environments. If you encounter setup or compilation issues on your specific machine (e.g., in Kali Linux, MATLAB, or a specific IDE), we provide direct assistance to help you get it running perfectly.",
-            q4: "Do you offer revisions if my professor asks for changes?",
-            a4: "Yes. Minor adjustments to align strictly with the original rubric you provided are included free of charge. We stay with you until the final submission is approved.",
-            q5: "How are payments handled?",
-            a5: "Once we review your requirements, we provide a fixed quote. Payments are securely processed before development begins. For larger, complex projects (+$200), we can discuss milestone-based payment structures."
+            status: "STUDENT CONCERNS",
+            title: "You asked, we answered.",
+            subtitle: "Total transparency. Here is exactly how we protect you and your grades.",
+            q1: "Is my university going to find out?",
+            a1: "Never. We take your privacy very seriously. Your name and assignment details are never shared, and all project files are permanently deleted from our servers once you get your grade.",
+            q2: "Will this pass Turnitin and AI detectors?",
+            a2: "100%. We write every single line of code and every paragraph from scratch. We even run it through premium detectors ourselves before sending it to you just to be safe.",
+            q3: "What if the code doesn't compile on my laptop?",
+            a3: "We don't just send you a zip file and disappear. If you have any trouble setting up the environment (like MySQL, Node, or Kali Linux), we will guide you until it runs perfectly on your screen.",
+            q4: "What if my professor asks for changes?",
+            a4: "Minor adjustments and tweaks to fit the original rubric are completely free. We stay with you until the project is officially accepted.",
+            q5: "How much does it cost?",
+            a5: "It depends on the complexity and the deadline. Minor bug fixes can be under $50, while full-stack final year projects will be more. Send us the details and we'll give you an exact quote in minutes."
         },
         widget: {
-            title: "Emergency Comms",
-            subtitle: "Deadline approaching? Ping us directly for an immediate response and quote.",
-            btnText: "Chat on WhatsApp",
-            status: "Online"
+            title: "Need help right now?",
+            subtitle: "Deadline approaching? Tap here to message us directly on WhatsApp.",
+            btnText: "Message on WhatsApp",
+            status: "We're Online"
         },
         cases: {
-            status: "PROVEN ACADEMIC IMPACT",
-            title: "Proof of Execution.",
-            subtitle: "Actual code architecture, terminal outputs, and mathematical models from recent academic interventions.",
+            status: "RECENT WINS",
+            title: "Projects We've Saved.",
+            subtitle: "Real bugs, real math, and the actual code we wrote to get our clients an A.",
 
             case1Title: "Java: Concurrent Systems",
             case1Tags: "Java • Multithreading • Big-O",
-            case1Problem: "The student's Order Matching Engine was suffering from thread deadlocks and O(n^2) latency under heavy load 24 hours before submission.",
-            case1Solution: "Implemented lock-free data structures (ConcurrentSkipListMap) and thread-safe queues. Reduced time complexity to O(log n) with zero race conditions.",
-            case1Result: "100% Compilation, Grade A+",
-            case1FileTree: "├── src/main/java/\n│   ├── engine/\n│   │   └── Matcher.java\n│   ├── models/\n│   │   └── Order.java\n└── pom.xml",
-            case1Code: "public void processOrder(Order order) {\n  // Lock-free insertion O(log n)\n  orderBook.computeIfAbsent(order.getPrice(), \n    k -> new ConcurrentLinkedQueue<>()\n  ).add(order);\n\n  CompletableFuture.runAsync(() -> {\n    matchEngine.resolve(orderBook);\n  }, threadPool);\n}",
-            case1Terminal: "> javac Matcher.java\n> java Matcher\n[INFO] Initializing ThreadPool (8 threads)...\n[SUCCESS] Matched 10,000 orders in 14.2ms\n[INFO] Zero lock contention detected.\n> Process finished with exit code 0",
+            case1Problem: "The Bug: The student's Order Matching Engine was deadlocking and crashing under heavy load just 24 hours before submission.",
+            case1Solution: "The Fix: Replaced standard lists with lock-free data structures (ConcurrentSkipListMap). Reduced time complexity to O(log n) with zero race conditions.",
+            case1Result: "100% Compilation, Grade: A+",
+            // FIXED: Wrapped multi-line strings in backticks ` ` instead of quotes " "
+            case1FileTree: `├── src/main/java/
+│   ├── engine/
+│   │   └── Matcher.java
+│   ├── models/
+│   │   └── Order.java
+└── pom.xml`,
+            case1Code: `public void processOrder(Order order) {
+  // Lock-free insertion O(log n)
+  orderBook.computeIfAbsent(order.getPrice(),
+    k -> new ConcurrentLinkedQueue<>()
+  ).add(order);
+
+  CompletableFuture.runAsync(() -> {
+    matchEngine.resolve(orderBook);
+  }, threadPool);
+}`,
+            case1Terminal: `> javac Matcher.java
+> java Matcher
+[INFO] Initializing ThreadPool (8 threads)...
+[SUCCESS] Matched 10,000 orders in 14.2ms
+[INFO] Zero lock contention detected.
+> Process finished with exit code 0`,
 
             case2Title: "Math: Multivariable Calculus",
             case2Tags: "Optimization • Linear Algebra • MATLAB",
-            case2Problem: "Required to manually compute the Hessian matrix to find the global minimum of a non-convex function, then plot the gradient descent path.",
-            case2Solution: "Calculated all partial derivatives step-by-step, proved the eigenvalues were strictly positive, and generated a flawless 3D surface plot.",
-            case2Result: "100% Accuracy, Grade: A+",
+            case2Problem: "The Problem: The student needed to manually compute a Hessian matrix to find the global minimum of a function, then plot it.",
+            case2Solution: "The Fix: Calculated all partial derivatives step-by-step, proved the eigenvalues, and generated a flawless 3D surface plot for their report.",
+            case2Result: "Zero Errors, Grade: A",
             case2PdfTitle: "optimization_proof.pdf",
 
             case3Title: "Python: Machine Learning",
-            case3Tags: "Python • PyTorch • Data Science",
-            case3Problem: "The student's Convolutional Neural Network (CNN) was suffering from vanishing gradients, resulting in an accuracy plateau of 42%.",
-            case3Solution: "Refactored the architecture, added Batch Normalization layers, and implemented the AdamW optimizer with a cosine annealing learning rate.",
+            case3Tags: "Python • PyTorch • Neural Networks",
+            case3Problem: "The Bug: The student's CNN model was suffering from vanishing gradients, meaning accuracy was stuck at a failing 42%.",
+            case3Solution: "The Fix: Refactored the architecture, added Batch Normalization layers, and implemented the AdamW optimizer to rescue the model.",
             case3Result: "94% Model Accuracy, Passed",
-            case3FileTree: "├── data/\n├── models/\n│   └── resnet_custom.py\n├── train.py\n└── requirements.txt",
-            case3Code: "class CustomCNN(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.conv1 = nn.Conv2d(3, 64, kernel_size=3)\n        self.bn1 = nn.BatchNorm2d(64)\n        \n    def forward(self, x):\n        x = F.relu(self.bn1(self.conv1(x)))\n        return F.max_pool2d(x, 2)",
-            case3Terminal: "> python train.py --epochs 50\nEpoch [1/50] | Loss: 2.145 | Acc: 42.1%\nEpoch [10/50]| Loss: 0.842 | Acc: 78.4%\nEpoch [50/50]| Loss: 0.112 | Acc: 94.2%\n[SUCCESS] Model weights saved to /models"
+            case3FileTree: `├── data/
+├── models/
+│   └── resnet_custom.py
+├── train.py
+└── requirements.txt`,
+            case3Code: `class CustomCNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.conv1 = nn.Conv2d(3, 64, kernel_size=3)
+        self.bn1 = nn.BatchNorm2d(64)
+
+    def forward(self, x):
+        x = F.relu(self.bn1(self.conv1(x)))
+        return F.max_pool2d(x, 2)`,
+            case3Terminal: `> python train.py --epochs 50
+Epoch [1/50] | Loss: 2.145 | Acc: 42.1%
+Epoch [10/50]| Loss: 0.842 | Acc: 78.4%
+Epoch [50/50]| Loss: 0.112 | Acc: 94.2%
+[SUCCESS] Model weights saved to /models`
         }
     },
     ar: {
         nav: {
             brand: "كوديكس الأكاديمية",
-            overview: "نظرة عامة",
+            overview: "الرئيسية",
             services: "التخصصات",
-            projects: "دراسات حالة",
-            cta: "تقديم طلب"
+            projects: "أعمالنا",
+            cta: "اطلب مساعدة الآن"
         },
         hero: {
             badge: "دعم أكاديمي سري 100%",
-            title: "مرهق من المواعيد النهائية؟<br/><span class='highlight-text'>احصل على مساعدة الخبراء.</span>",
-            subtitle: "مساعدة موثوقة وعالية الجودة للواجبات الجامعية والمشاريع المعقدة والتقارير الأكاديمية. خالية من الانتحال ومصممة خصيصاً لتناسب معايير التقييم الخاصة بك.",
+            title: "عالق مع كود لا يعمل أو ديدلاين مستحيل؟<br/><span class='highlight-text'>دعنا ننجز المهمة.</span>",
+            subtitle: "انسَ التوتر. نقدم لك أكواداً نظيفة وموثقة، وحلولاً رياضية معقدة، وتقارير جامعية دقيقة خالية من النسخ لتضمن أعلى الدرجات.",
             btnPrimary: "احصل على تسعيرة مجانية",
-            btnSecondary: "تصفح أعمالنا",
-            supportText: "استشارات متاحة باللغات العربية، الإنجليزية والفرنسية.",
-            guarantee1: "خالي من الانتحال 100%",
-            guarantee2: "سرية تامة",
-            guarantee3: "تسليم في الموعد"
+            btnSecondary: "تصفح أعمالنا السابقة",
+            supportText: "دعم مخصص باللغات العربية، الإنجليزية، والفرنسية.",
+            guarantee1: "أعمال أصلية 100%",
+            guarantee2: "سرية تامة لبياناتك",
+            guarantee3: "نضمن عمل الكود على جهازك"
         },
         disciplines: {
-            title: "التخصصات<br/>التقنية.",
-            software: "هندسة البرمجيات",
-            softwareDesc: "برمجيات عالية الجودة لمشاريع علوم الحاسوب، تشمل الخوارزميات المخصصة، وتطبيقات الويب المتكاملة، وتصميم بنية الأنظمة.",
-            physics: "التحليل الكمي والفيزياء",
-            physicsDesc: "النمذجة الرياضية المتقدمة، وتحليل البيانات، والمحاكاة الفيزيائية باستخدام بايثون وماتلاب وطرق التحليل الدقيقة.",
-            reports: "التوثيق التقني",
-            reportsDesc: "مقترحات المشاريع، وتقارير التخرج، والأوراق البحثية المنسقة بدقة متناهية وفق معايير IEEE."
+            title: "بماذا يمكننا<br/>مساعدتك؟",
+            software: "علوم الحاسوب والبرمجة",
+            softwareDesc: "من الواجبات البسيطة إلى تطبيقات الويب المتكاملة وهياكل البيانات. نكتب أكواداً نظيفة ومشروحة لتعمل بسلاسة عند مناقشتها.",
+            physics: "الرياضيات والهندسة",
+            physicsDesc: "حل المعادلات التفاضلية، ومحاكاة الفيزياء، ومشاريع MATLAB المعقدة بخطوات واضحة ومنهجية دقيقة.",
+            reports: "التقارير ومشاريع التخرج",
+            reportsDesc: "كتابة وتنسيق مشاريع التخرج (FYP) والأبحاث وفق معايير الجامعات (IEEE). نضمن لك تجاوز فحص Turnitin بنجاح."
         },
         contact: {
-            status: "متاح لمشاريع جديدة",
-            title: "دعنا نحل هذا.",
-            subtitle: "هل تحتاج إلى مساعدة سريعة؟ تواصل معنا عبر رسائل إنستغرام، أو واتساب، أو اترك تفاصيل واجبك أدناه.",
-            labelSpecs: "وقت الاستجابة",
+            status: "متواجدون الآن",
+            title: "دعنا نحل هذه المشكلة.",
+            subtitle: "متوتر بسبب مشروع؟ راسلنا مباشرة على واتساب، أو ارفع ملفات واجبك أدناه للحصول على تسعيرة فورية.",
+            labelSpecs: "وقت الرد",
             valSpecs: "أقل من 30 دقيقة",
-            labelScope: "السرية",
-            valScope: "مجهول الهوية تماماً",
-            btnSubmit: "إرسال التفاصيل",
-            whatsappBtn: "واتساب",
-            instagramBtn: "إنستغرام"
+            labelScope: "الخصوصية",
+            valScope: "مجهول الهوية 100%",
+            btnSubmit: "إرسال تفاصيل الواجب",
+            whatsappBtn: "واتساب (الأسرع)",
+            instagramBtn: "إنستغرام",
+            form: {
+                name: "الاسم / اللقب",
+                namePlace: "بماذا تحب أن نناديك؟",
+                contact: "الإيميل أو رقم الواتساب",
+                contactPlace: "كيف يمكننا التواصل معك؟",
+                subject: "المادة / التخصص",
+                subjectPlace: "مثال: برمجة جافا",
+                deadline: "الموعد النهائي لتسليم الواجب",
+                deadlinePlace: "مثال: غداً الساعة 10 صباحاً",
+                country: "البلد أو الدولة",
+                countryPlace: "مثال: السعودية، الإمارات...",
+                budget: "الميزانية المتوقعة",
+                budgetDefault: "اختر الميزانية",
+                budget1: "أقل من 10$ (إصلاح أخطاء بسيطة)",
+                budget2: "10$ - 25$ (واجبات عادية)",
+                budget3: "25$ - 50$ (مشاريع متوسطة)",
+                budget4: "50$ - 100$ (مشاريع متقدمة)",
+                budget5: "+100$ (أنظمة متكاملة ومشاريع تخرج)",
+                details: "تفاصيل الواجب",
+                detailsPlace: "اشرح لنا ما الذي تحتاجه بالضبط...",
+                files: "ملفات المشروع (PDF, ZIP)",
+                dropzone: "اسحب الملفات هنا أو اضغط للاختيار"
+            }
         },
         about: {
-            title: "شريكك الأكاديمي<br/>الموثوق.",
-            lead: "أدرك تماماً ضغط المواعيد النهائية الجامعية. لقد مررت بذلك.",
-            body1: "قد يكون التوفيق بين المهام المتعددة والمشاريع المعقدة والجداول الزمنية الضيقة أمراً مرهقاً. لذلك تم بناء كوديكس لتقديم دعم أكاديمي موثوق وعالي الجودة عندما تكون في أمس الحاجة إليه.",
-            body2: "سواء كان الأمر يتعلق بتصحيح أكواد برمجية معقدة، أو هيكلة تقرير بحثي، أو حل الواجبات اليومية، ستحصل على مساعدة مباشرة وسرية مصممة خصيصاً لتلبي معايير التقييم بصرامة. لا توجد حلول آلية، بل دعم حقيقي.",
+            title: "سلاحك السري<br/>للتفوق الجامعي.",
+            lead: "أعرف تماماً شعور الجلوس أمام الشاشة في الثالثة فجراً، مع كود معطل وموعد تسليم يقترب بسرعة.",
+            body1: "الدراسة الجامعية صعبة بما فيه الكفاية دون الحاجة لفك رموز متطلبات الدكاترة المعقدة. لذلك أسست Qodix لتكون شبكة الأمان التي تمنيتها يوماً—المكان الذي تلجأ إليه لتحصل على حلول فعلية تعمل بكفاءة عندما تشعر أنك عالق تماماً.",
+            body2: "أنا لا أستخدم الذكاء الاصطناعي لكتابة أكوادك، ولا أبيع مشاريع قديمة. سواء كان الأمر يتعلق بحل مشكلة برمجية معقدة، أو رسم منحنى في MATLAB، أو كتابة مشروع تخرجك، ستحصل على عمل مخصص، موثق بشرح واضخ، ومضمون ليحصد لك درجة الامتياز.",
             signature: "صلاح العطار — مؤسس كوديكس"
         },
         services: {
-            status: "مجالات التخصص",
-            title: "الخدمات الأكاديمية.",
-            subtitle: "دعم تقني متخصص مصمم بدقة ليتوافق مع معايير التقييم الجامعية.",
-            devTitle: "علوم الحاسوب والبرمجة",
-            devDesc: "تصحيح الأكواد، الخوارزميات، تطوير الويب، وإعداد بيئات الاختبار (مثل قواعد البيانات و Kali Linux).",
-            engTitle: "الهندسة والرياضيات",
-            engDesc: "الحسابات المعقدة، المحاكاة، مشاريع MATLAB، والتقارير المخبرية الدقيقة.",
-            writeTitle: "التقارير الأكاديمية",
-            writeDesc: "تنسيق أبحاث ومشاريع التخرج (FYP) وفق معايير IEEE، بأصالة تامة وبدون أي انتحال."
+            status: "خبراتنا",
+            title: "كيف نضمن لك أعلى الدرجات؟",
+            subtitle: "نحن لا نكتب الكود فقط؛ بل نتأكد من أنك تفهمه جيداً لتتمكن من مناقشته بثقة.",
+            devTitle: "البرمجة وتطوير الويب",
+            devDesc: "تطبيقات Java, C++, Python، ومشاريع React/Node.js. نسلمك الكود مع تعليقات توضيحية (Comments) لتفهم آلية عمله.",
+            engTitle: "الرياضيات والخوارزميات",
+            engDesc: "تحليل تعقيد الخوارزميات (Big-O)، ورسومات MATLAB، وحسابات التفاضل والتكامل بخطوات مفصلة.",
+            writeTitle: "الكتابة الأكاديمية",
+            writeDesc: "أبحاث وتقارير خالية من النسخ والانتحال. نزودك بتقرير Turnitin مع العمل لتكون مطمئناً تماماً."
         },
         process: {
             status: "آلية العمل",
-            title: "خطوات بسيطة ومضمونة.",
-            subtitle: "الحصول على مساعدة الخبراء لا ينبغي أن يكون معقداً. هكذا نضمن لك أفضل النتائج.",
-            step1Title: "1. إرسال التفاصيل",
-            step1Desc: "أرسل متطلبات الواجب، أو الكود البرمجي الذي يحتاج لتعديل، أو الموعد النهائي عبر نموذج الاتصال.",
-            step2Title: "2. تقييم وتسعير",
-            step2Desc: "أقوم بمراجعة المتطلبات وأقدم لك تسعيرة واضحة ووقت تسليم مضمون.",
-            step3Title: "3. استلام العمل",
-            step3Desc: "احصل على عمل أصلي 100%، خالي من الانتحال، ومنسق تماماً ليحصد أعلى الدرجات."
+            title: "بساطة. سرعة. أمان.",
+            subtitle: "لا توجد تعقيدات. أرسل متطلبات المشروع، واعتبره منجزاً.",
+            step1Title: "1. أرسل المتطلبات",
+            step1Desc: "ارفع ملف المتطلبات (Rubric) أو الكود المعطل في النموذج أدناه، أو أرسله عبر واتساب.",
+            step2Title: "2. تسعيرة واضحة",
+            step2Desc: "سنراجع الطلب فوراً ونعطيك سعراً عادلاً وموعداً مضموناً للتسليم.",
+            step3Title: "3. استلم عملك",
+            step3Desc: "احصل على الملفات الجاهزة، وتقرير الأصالة، وإرشادات واضحة لتشغيل الكود على جهازك."
         },
         faq: {
-            status: "استفسارات العملاء",
-            title: "الأسئلة الشائعة.",
-            subtitle: "شفافية تامة فيما يخص بروتوكولاتنا الأكاديمية، والسرية، والضمانات.",
-            q1: "هل هذه الخدمة سرية تماماً؟",
-            a1: "بالتأكيد. نحن نعمل وفق بروتوكولات سرية صارمة. لا يتم أبداً مشاركة أو إعادة استخدام أو نشر تفاصيلك الشخصية أو اسم جامعتك أو تفاصيل واجبك. بمجرد تسليم المشروع، يتم مسح بياناتك بأمان.",
-            q2: "هل سيتجاوز العمل اختبارات الانتحال (Turnitin) وكشف الذكاء الاصطناعي؟",
-            a2: "نعم. تتم كتابة كل سطر برمجي من الصفر، وكل تقرير يتم إعداده خصيصاً لك. نحن لا نستخدم قوالب مكررة. نضمن لك عملاً أصلياً بنسبة 100% يجتاز Turnitin و SafeAssign وكاشفات الذكاء الاصطناعي القياسية بنجاح.",
-            q3: "ماذا لو لم يعمل الكود على جهازي؟",
-            a3: "نحن نضمن عمل الكود في البيئات القياسية. إذا واجهت مشاكل في الإعداد أو التشغيل على جهازك الخاص (مثل Kali Linux أو MATLAB)، فإننا نقدم مساعدة مباشرة لمساعدتك في تشغيله بشكل مثالي.",
-            q4: "هل تقدمون تعديلات إذا طلب أستاذي تغييرات؟",
-            a4: "نعم. التعديلات الطفيفة التي تتماشى بدقة مع المتطلبات الأصلية التي قدمتها مشمولة مجاناً. نحن نبقى معك حتى يتم اعتماد التسليم النهائي.",
-            q5: "كيف تتم عملية الدفع؟",
-            a5: "بمجرد مراجعة متطلباتك، نقدم لك تسعيرة ثابتة. تتم معالجة المدفوعات بأمان قبل بدء العمل. بالنسبة للمشاريع الكبيرة والمعقدة (+200 دولار)، يمكننا مناقشة هياكل الدفع القائمة على المراحل."
+            status: "أسئلة الطلاب الشائعة",
+            title: "إجابات شفافة ومباشرة.",
+            subtitle: "نحن ندرك مخاوفك. إليك كيف نحمي بياناتك ونضمن نجاحك.",
+            q1: "هل يمكن لجامعتي أن تكتشف الأمر؟",
+            a1: "مستحيل. نحن نتعامل مع بياناتك بسرية تامة. لا نشارك اسمك أو تفاصيل واجبك أبداً، ويتم حذف جميع الملفات من خوادمنا بمجرد استلامك لدرجتك.",
+            q2: "هل سيتجاوز العمل برامج كشف الانتحال (Turnitin)؟",
+            a2: "بنسبة 100%. نحن نكتب كل سطر برمجي وكل فقرة من الصفر. بل ونقوم بفحص العمل عبر برامج كشف الانتحال المدفوعة قبل تسليمه لك لضمان سلامته.",
+            q3: "ماذا لو لم يعمل الكود على جهازي (اللابتوب)؟",
+            a3: "نحن لا نرسل لك الملفات ونختفي. إذا واجهت أي مشكلة في تشغيل بيئة العمل (مثل MySQL أو Node أو Linux)، فسنرشدك خطوة بخطوة حتى يعمل الكود أمامك بسلاسة.",
+            q4: "ماذا لو طلب الدكتور تعديلات على المشروع؟",
+            a4: "التعديلات البسيطة التي تتوافق مع المتطلبات الأساسية للواجب مجانية تماماً. نحن نقف معك حتى يتم قبول المشروع نهائياً.",
+            q5: "كم تبلغ التكلفة؟",
+            a5: "يعتمد ذلك على مدى تعقيد المشروع والوقت المتاح. إصلاح الأخطاء البسيطة قد يكلف أقل من 50 دولار، بينما مشاريع التخرج الكبيرة تكلفتها أعلى. أرسل لنا التفاصيل وسنعطيك تسعيرة دقيقة خلال دقائق."
         },
         widget: {
-            title: "تواصل طارئ",
-            subtitle: "هل اقترب الموعد النهائي؟ راسلنا مباشرة للحصول على استجابة سريعة وتسعيرة.",
-            btnText: "تواصل عبر واتساب",
-            status: "متصل الآن"
+            title: "تحتاج مساعدة عاجلة؟",
+            subtitle: "هل اقترب موعد التسليم؟ اضغط هنا لمراسلتنا مباشرة عبر واتساب.",
+            btnText: "راسلنا على واتساب",
+            status: "نحن متواجدون الآن"
         },
         cases: {
-            status: "تأثير أكاديمي مثبت",
-            title: "إثبات التنفيذ.",
-            subtitle: "أكواد برمجية ومخرجات نظام حقيقية ونماذج رياضية من تدخلاتنا الأكاديمية الأخيرة.",
+            status: "مشاريع أنجزناها",
+            title: "نتائج حقيقية لطلاب حقيقيين.",
+            subtitle: "أمثلة حقيقية لأكواد أصلحناها ومعادلات حللناها لنضمن لعملائنا درجات الامتياز.",
 
             case1Title: "هيكلة نظام جافا التزامني",
             case1Tags: "Java • تعدد المهام • تعقيد الخوارزميات",
-            case1Problem: "كان محرك مطابقة الطلبات الخاص بالطالب يعاني من اختناقات في الذاكرة وتأخير زمني O(n^2) تحت الضغط العالي قبل 24 ساعة من التسليم.",
-            case1Solution: "تطبيق هياكل بيانات خالية من الأقفال (Lock-Free) وطوابير آمنة للخيوط. تم تقليل التعقيد الزمني إلى O(log n) بدون أي تداخلات.",
-            case1Result: "تجميع الكود 100%، الامتياز (A+)",
-            case1FileTree: "├── src/main/java/\n│   ├── engine/\n│   │   └── Matcher.java\n│   ├── models/\n│   │   └── Order.java\n└── pom.xml",
-            case1Code: "public void processOrder(Order order) {\n  // Lock-free insertion O(log n)\n  orderBook.computeIfAbsent(order.getPrice(), \n    k -> new ConcurrentLinkedQueue<>()\n  ).add(order);\n\n  CompletableFuture.runAsync(() -> {\n    matchEngine.resolve(orderBook);\n  }, threadPool);\n}",
-            case1Terminal: "> javac Matcher.java\n> java Matcher\n[INFO] Initializing ThreadPool (8 threads)...\n[SUCCESS] Matched 10,000 orders in 14.2ms\n[INFO] Zero lock contention detected.\n> Process finished with exit code 0",
+            case1Problem: "المشكلة: كان نظام مطابقة الطلبات الخاص بالطالب ينهار تحت الضغط العالي بسبب تداخل المهام، وذلك قبل 24 ساعة فقط من التسليم.",
+            case1Solution: "الحل: قمنا بتطبيق هياكل بيانات آمنة (Lock-Free) لتقليل وقت المعالجة إلى O(log n) وضمان عمل النظام دون أي أخطاء تداخل.",
+            case1Result: "تجميع الكود 100%، درجة الامتياز (A+)",
+            // FIXED: Wrapped multi-line strings in backticks ` ` instead of quotes " "
+            case1FileTree: `├── src/main/java/
+│   ├── engine/
+│   │   └── Matcher.java
+│   ├── models/
+│   │   └── Order.java
+└── pom.xml`,
+            case1Code: `public void processOrder(Order order) {
+  // Lock-free insertion O(log n)
+  orderBook.computeIfAbsent(order.getPrice(),
+    k -> new ConcurrentLinkedQueue<>()
+  ).add(order);
 
-            case2Title: "الرياضيات التطبيقية والتحسين",
+  CompletableFuture.runAsync(() -> {
+    matchEngine.resolve(orderBook);
+  }, threadPool);
+}`,
+            case1Terminal: `> javac Matcher.java
+> java Matcher
+[INFO] Initializing ThreadPool (8 threads)...
+[SUCCESS] Matched 10,000 orders in 14.2ms
+[INFO] Zero lock contention detected.
+> Process finished with exit code 0`,
+
+            case2Title: "الرياضيات والتحسين (Optimization)",
             case2Tags: "تفاضل وتكامل • جبر خطي • MATLAB",
-            case2Problem: "تطلب المشروع حساب مصفوفة (Hessian) يدوياً للعثور على الحد الأدنى العالمي لدالة غير محدبة، ورسم مسار الانحدار (Gradient Descent).",
-            case2Solution: "حساب جميع المشتقات الجزئية خطوة بخطوة، وإثبات أن القيم الذاتية موجبة تماماً، وتوليد رسم بياني ثلاثي الأبعاد لا تشوبه شائبة.",
+            case2Problem: "المشكلة: احتاج الطالب لحساب مصفوفة (Hessian) يدوياً للعثور على الحد الأدنى لمعادلة معقدة، ورسم مسارها بدقة.",
+            case2Solution: "الحل: قمنا بحساب جميع المشتقات الجزئية خطوة بخطوة، مع إثبات رياضي دقيق، وتوليد رسم بياني ثلاثي الأبعاد لا تشوبه شائبة للتقرير.",
             case2Result: "دقة 100%، درجة الامتياز (A+)",
             case2PdfTitle: "optimization_proof.pdf",
 
-            case3Title: "بايثون: تعلم الآلة (AI)",
-            case3Tags: "Python • PyTorch • علم البيانات",
-            case3Problem: "كانت الشبكة العصبية (CNN) للطالب تعاني من تلاشي التدرجات (Vanishing Gradients)، مما أدى إلى ثبات دقة النموذج عند 42%.",
-            case3Solution: "إعادة هيكلة البنية، وإضافة طبقات (Batch Normalization)، وتطبيق مُحسِّن (AdamW) مع معدل تعلم ديناميكي.",
+            case3Title: "تعلم الآلة (Machine Learning)",
+            case3Tags: "Python • PyTorch • شبكات عصبية",
+            case3Problem: "المشكلة: كان نموذج الذكاء الاصطناعي الخاص بالطالب يعاني من تلاشي التدرجات، مما أدى لثبات دقة النموذج عند 42% فقط (درجة رسوب).",
+            case3Solution: "الحل: أعدنا هيكلة النموذج البرمجي، وأضفنا طبقات تطبيع (Batch Normalization) ومُحسِّن AdamW لإنقاذ المشروع بالكامل.",
             case3Result: "دقة 94%، اجتياز بتفوق",
-            case3FileTree: "├── data/\n├── models/\n│   └── resnet_custom.py\n├── train.py\n└── requirements.txt",
-            case3Code: "class CustomCNN(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.conv1 = nn.Conv2d(3, 64, kernel_size=3)\n        self.bn1 = nn.BatchNorm2d(64)\n        \n    def forward(self, x):\n        x = F.relu(self.bn1(self.conv1(x)))\n        return F.max_pool2d(x, 2)",
-            case3Terminal: "> python train.py --epochs 50\nEpoch [1/50] | Loss: 2.145 | Acc: 42.1%\nEpoch [10/50]| Loss: 0.842 | Acc: 78.4%\nEpoch [50/50]| Loss: 0.112 | Acc: 94.2%\n[SUCCESS] Model weights saved to /models"
-        }
+            case3FileTree: `├── data/
+├── models/
+│   └── resnet_custom.py
+├── train.py
+└── requirements.txt`,
+            case3Code: `class CustomCNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.conv1 = nn.Conv2d(3, 64, kernel_size=3)
+        self.bn1 = nn.BatchNorm2d(64)
 
+    def forward(self, x):
+        x = F.relu(self.bn1(self.conv1(x)))
+        return F.max_pool2d(x, 2)`,
+            case3Terminal: `> python train.py --epochs 50
+Epoch [1/50] | Loss: 2.145 | Acc: 42.1%
+Epoch [10/50]| Loss: 0.842 | Acc: 78.4%
+Epoch [50/50]| Loss: 0.112 | Acc: 94.2%
+[SUCCESS] Model weights saved to /models`
+        }
     }
 };

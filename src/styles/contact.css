@@ -8,6 +8,7 @@
     max-width: 1400px;
     margin: 0 auto;
     color: var(--text-primary);
+    /* Added to keep glows contained */
 }
 
 .qx-contact-section * {
@@ -37,6 +38,7 @@
     margin: 0 auto;
 }
 
+/* RESTORED: Correct 2-Column Grid Layout */
 .qx-contact-grid {
     display: grid;
     grid-template-columns: 1fr 1.3fr;
@@ -206,7 +208,6 @@
 
 /* =========================================
    RIGHT SIDE: LIQUID GLASS FORM
-   Matches .protocol-card from process.css
    ========================================= */
 .qx-form-wrapper {
     position: relative;
@@ -244,7 +245,8 @@
     color: var(--text-secondary);
 }
 
-.qx-input-block input,
+/* Standard Inputs */
+.qx-input-block input[type="text"],
 .qx-input-block textarea {
     width: 100%;
     background: rgba(128, 128, 128, 0.05);
@@ -263,12 +265,66 @@
     min-height: 120px;
 }
 
-.qx-input-block input:focus,
+.qx-input-block input[type="text"]:focus,
 .qx-input-block textarea:focus {
     border-color: #8b5cf6;
     background: rgba(139, 92, 246, 0.05);
     box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
 }
+
+
+/* --- NEW: Interactive Budget Pills --- */
+.qx-budget-row {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows wrapping on small screens */
+    gap: 0.75rem;
+}
+
+.qx-budget-option {
+    cursor: pointer;
+}
+
+.qx-budget-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    /* Hides the actual radio dot */
+    width: 0;
+    height: 0;
+}
+
+.qx-budget-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    background: rgba(128, 128, 128, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    /* Perfect pill shape */
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+/* Hover State */
+.qx-budget-option:hover .qx-budget-pill {
+    background: rgba(128, 128, 128, 0.1);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Selected (Checked) State */
+.qx-budget-option input[type="radio"]:checked+.qx-budget-pill {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: #8b5cf6;
+    color: #8b5cf6;
+    /* Turns text purple */
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+}
+
 
 /* --- Drag & Drop Zone --- */
 .qx-file-dropzone {
@@ -316,7 +372,7 @@
 }
 
 /* =========================================
-   SUBMIT BUTTON (Matches .btn-glass.primary)
+   SUBMIT BUTTON
    ========================================= */
 .qx-submit-btn {
     display: inline-flex;
@@ -379,5 +435,9 @@
     .qx-input-group {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+    }
+
+    .qx-budget-row {
+        justify-content: flex-start;
     }
 }
