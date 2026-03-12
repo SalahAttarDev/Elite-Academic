@@ -441,3 +441,57 @@
         justify-content: flex-start;
     }
 }
+
+/* --- NEW: Dynamic File List Styles --- */
+.file-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.qx-file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.qx-file-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 85%;
+    /* Ensures long file names get cut off with ... */
+    font-family: monospace;
+}
+
+.qx-file-remove {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    /* Red color for delete */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.qx-file-remove:hover {
+    background: rgba(239, 68, 68, 0.15);
+}
+
+.qx-file-remove svg {
+    width: 16px;
+    height: 16px;
+}

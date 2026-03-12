@@ -109,10 +109,11 @@ export default function renderContact() {
                                     <label>${t('contact.form.files') || 'Project Files (PDF, ZIP)'}</label>
                                     <div class="qx-file-dropzone" id="file-dropzone">
                                         <input type="file" id="file-input" class="hidden-file-input" multiple />
-                                        <div class="dropzone-content">
+                                        <div class="dropzone-content" id="dropzone-content">
                                             <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                                            <span class="drop-text" id="drop-text">${t('contact.form.dropzone') || 'Drag files here'}</span>
+                                            <span class="drop-text" id="drop-text">${t('contact.form.dropzone') || 'Drag files here or click to browse'}</span>
                                         </div>
+                                        <div id="file-list-container" class="file-list-container"></div>
                                     </div>
                                 </div>
 
@@ -128,7 +129,6 @@ export default function renderContact() {
             </section>
         `,
         mount: () => {
-            // Intersection Observer for animations
             const elements = document.querySelectorAll('#contact .fade-up');
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
@@ -139,61 +139,109 @@ export default function renderContact() {
                 elements.forEach(el => observer.observe(el));
             }
 
-            // Drag and Drop Logic
+            // --- CUSTOM FILE ACCUMULATOR LOGIC ---
+            let pendingFiles = []; // This array holds files permanently until removed
             const dropzone = document.getElementById('file-dropzone');
             const fileInput = document.getElementById('file-input');
             const dropText = document.getElementById('drop-text');
+            const fileListContainer = document.getElementById('file-list-container');
 
             if (dropzone && fileInput) {
-                dropzone.addEventListener('click', () => fileInput.click());
+                // Click dropzone to open file dialog (unless clicking an X button)
+                dropzone.addEventListener('click', (e) => {
+                    if (!e.target.closest('.qx-file-remove')) {
+                        fileInput.click();
+                    }
+                });
+
                 dropzone.addEventListener('dragover', (e) => {
                     e.preventDefault();
                     dropzone.classList.add('drag-active');
                 });
+
                 dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-active'));
+
                 dropzone.addEventListener('drop', (e) => {
                     e.preventDefault();
                     dropzone.classList.remove('drag-active');
                     if (e.dataTransfer.files.length) {
-                        fileInput.files = e.dataTransfer.files;
-                        updateFileText(e.dataTransfer.files);
+                        addFiles(e.dataTransfer.files);
                     }
-                });
-                fileInput.addEventListener('change', (e) => {
-                    if (e.target.files.length) updateFileText(e.target.files);
                 });
 
-                function updateFileText(files) {
-                    if (files.length === 1) {
-                        dropText.textContent = `Attached: ${files[0].name}`;
-                    } else if (files.length > 1) {
-                        dropText.textContent = `Attached: ${files.length} files`;
+                fileInput.addEventListener('change', (e) => {
+                    if (e.target.files.length) {
+                        addFiles(e.target.files);
+                        fileInput.value = ''; // Reset input so same file can be chosen again if needed
                     }
+                });
+
+                function addFiles(newFiles) {
+                    for (let file of newFiles) {
+                        // Prevent exact duplicates
+                        if (!pendingFiles.some(f => f.name === file.name && f.size === file.size)) {
+                            pendingFiles.push(file);
+                        }
+                    }
+                    renderFileList();
+                }
+
+                function renderFileList() {
+                    fileListContainer.innerHTML = ''; // Clear container
+
+                    if (pendingFiles.length === 0) {
+                        dropText.style.display = 'block';
+                        dropzone.style.borderColor = '';
+                        dropzone.style.background = '';
+                        return;
+                    }
+
+                    // Hide the default text if files exist
+                    dropText.style.display = 'none';
                     dropzone.style.borderColor = '#8b5cf6';
                     dropzone.style.background = 'rgba(139, 92, 246, 0.05)';
+
+                    pendingFiles.forEach((file, index) => {
+                        const fileItem = document.createElement('div');
+                        fileItem.className = 'qx-file-item';
+                        fileItem.innerHTML = `
+                            <span class="qx-file-name">${file.name}</span>
+                            <button type="button" class="qx-file-remove" data-index="${index}">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+                        `;
+                        fileListContainer.appendChild(fileItem);
+                    });
+
+                    // Add remove listeners
+                    document.querySelectorAll('.qx-file-remove').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.stopPropagation(); // Stop dropzone from opening file dialog
+                            const idx = parseInt(btn.getAttribute('data-index'));
+                            pendingFiles.splice(idx, 1); // Remove from array
+                            renderFileList(); // Re-render
+                        });
+                    });
                 }
             }
 
-            // TELEGRAM FORM SUBMISSION LOGIC
+            // --- TELEGRAM FORM SUBMISSION LOGIC ---
             const form = document.getElementById('qx-contact-form');
             const submitBtn = document.getElementById('qx-submit-btn');
 
             if (form) {
                 form.addEventListener('submit', async (e) => {
-                    e.preventDefault(); // Prevent page reload
+                    e.preventDefault();
 
-                    // Your Telegram Credentials
                     const BOT_TOKEN = '8176883089:AAHVd7tc6DCrwCGWU-hcbCj2yIb5KBwm1So';
                     const CHAT_ID = '8348513865';
 
-                    // Change Button State to Loading
                     const btnText = submitBtn.querySelector('.btn-text');
                     const originalBtnText = btnText.innerText;
                     submitBtn.disabled = true;
                     submitBtn.style.opacity = "0.7";
                     btnText.innerText = "SENDING...";
 
-                    // 1. Gather all form data
                     const name = document.getElementById('qx-in-name').value;
                     const contactInfo = document.getElementById('qx-in-contact').value;
                     const subject = document.getElementById('qx-in-subject').value;
@@ -201,18 +249,13 @@ export default function renderContact() {
                     const country = document.getElementById('qx-in-country').value;
                     const details = document.getElementById('qx-in-details').value;
 
-                    // Get selected budget
                     const budgetRadio = document.querySelector('input[name="budget"]:checked');
                     const budget = budgetRadio ? budgetRadio.value : "Not specified";
 
-                    // The files to upload
-                    const files = fileInput.files;
-
-                    // 2. Format the Text Message
-                    const messageText = `🚨 *NEW ACADEMIC REQUEST*\n\n👤 *Name:* ${name}\n📞 *Contact:* ${contactInfo}\n🌍 *Country:* ${country}\n📚 *Subject:* ${subject}\n⏰ *Deadline:* ${deadline}\n💰 *Budget:* ${budget}\n\n📝 *Details:*\n${details}`;
+                    // NEW FORMAT: Clear visual separators for multiple users
+                    const messageText = `==========================\n🚨 *NEW ACADEMIC REQUEST*\n==========================\n\n👤 *Name:* ${name}\n📞 *Contact:* ${contactInfo}\n🌍 *Country:* ${country}\n📚 *Subject:* ${subject}\n⏰ *Deadline:* ${deadline}\n💰 *Budget:* ${budget}\n\n📝 *Details:*\n${details}\n\n==========================`;
 
                     try {
-                        // 3. Send Text Message first (using sendMessage)
                         const textResponse = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -225,41 +268,38 @@ export default function renderContact() {
 
                         if (!textResponse.ok) throw new Error("Failed to send text data");
 
-                        // 4. Send Files one by one (if any exist)
-                        if (files.length > 0) {
+                        // Use pendingFiles array instead of fileInput
+                        if (pendingFiles.length > 0) {
                             btnText.innerText = "UPLOADING FILES...";
 
-                            for (let i = 0; i < files.length; i++) {
+                            for (let i = 0; i < pendingFiles.length; i++) {
                                 const formData = new FormData();
                                 formData.append('chat_id', CHAT_ID);
-                                formData.append('document', files[i]);
+                                formData.append('document', pendingFiles[i]);
 
                                 await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
                                     method: 'POST',
-                                    body: formData // No headers required for FormData, browser handles it
+                                    body: formData
                                 });
                             }
                         }
 
-                        // 5. Success State
                         btnText.innerText = "REQUEST SENT!";
-                        submitBtn.style.background = "#25D366"; // Success Green
+                        submitBtn.style.background = "#25D366";
                         submitBtn.style.color = "#ffffff";
                         submitBtn.style.borderColor = "#25D366";
 
-                        // Reset Form and Dropzone
+                        // Reset everything
                         form.reset();
-                        dropText.textContent = t('contact.form.dropzone') || 'Drag files here';
-                        dropzone.style.borderColor = '';
-                        dropzone.style.background = '';
+                        pendingFiles = []; // Clear array
+                        renderFileList();  // Clear UI
 
                     } catch (error) {
                         console.error("Telegram Error:", error);
                         btnText.innerText = "ERROR - TRY WHATSAPP";
-                        submitBtn.style.background = "#ef4444"; // Error Red
+                        submitBtn.style.background = "#ef4444";
                     }
 
-                    // Reset button after 4 seconds
                     setTimeout(() => {
                         submitBtn.disabled = false;
                         submitBtn.style.opacity = "1";

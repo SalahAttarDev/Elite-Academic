@@ -174,21 +174,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    /* Fixed Colors: Beautiful vibrant purple with guaranteed white text */
     background: #8b5cf6;
     color: #ffffff !important;
-
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 700;
     padding: 0 1.5rem;
     height: 42px;
     border-radius: 40px;
-    /* Fully rounded to match pill */
     margin-left: 0.5rem;
-
-    /* Premium Glassmorphism borders and shadows */
     border: 1px solid rgba(167, 139, 250, 0.4);
     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.15);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -197,9 +191,7 @@
 .qx-nav-cta:hover {
     transform: translateY(-2px);
     background: #7c3aed;
-    /* Slightly deeper purple on hover */
     border-color: rgba(167, 139, 250, 0.6);
-    /* Expands the purple glow to draw the eye */
     box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
@@ -239,16 +231,18 @@
     .qx-nav-menu {
         position: absolute;
         top: calc(100% + 15px);
-        /* Floats 15px below the pill */
         left: 0;
+        right: 0;
         width: 100%;
+        /* Perfectly matches the width of the navbar pill */
         background: rgba(10, 10, 12, 0.95);
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
         border: 1px solid var(--glass-border);
         border-radius: 24px;
-        /* Matches modern iOS style dropdowns */
         padding: 1.5rem;
+
+        /* Animation start state */
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
@@ -267,6 +261,7 @@
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
+        /* Clean drop down */
     }
 
     .qx-navbar-wrapper.menu-open .qx-nav-list {
