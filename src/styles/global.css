@@ -62,7 +62,6 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
-    border: 1px solid red;
     z-index: -3;
     pointer-events: none;
     transition: background-image 0.4s ease;
@@ -100,4 +99,23 @@ body::after {
 
 section {
     background: transparent !important;
+}
+
+
+/* UPDATE THIS IN global.css */
+
+html,
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+
+    /* CRITICAL MOBILE FIXES BELOW */
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }

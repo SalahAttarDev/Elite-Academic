@@ -535,3 +535,28 @@
         /* Ensure terminal is visible on mobile */
     }
 }
+
+
+.ide-code pre,
+.ide-sidebar pre,
+.terminal-body-mini pre {
+    white-space: pre-wrap;
+    /* CSS 3 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
+    overflow-wrap: break-word;
+    font-size: 0.8rem;
+    /* Slightly smaller on mobile */
+}
+
+.case-ide-split {
+    max-width: 100%;
+    overflow: hidden;
+    /* Prevents IDE from bleeding off screen */
+}
