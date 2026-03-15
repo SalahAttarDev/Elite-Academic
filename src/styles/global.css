@@ -140,6 +140,14 @@ body {
         display: none !important;
     }
 
+    .qx-navbar-pill,
+    .qx-nav-menu,
+    .qx-chat-panel,
+    .btn-glass {
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+    }
+
     /* 3. Reduce glassmorphism blur intensity on phones */
     .qx-form-wrapper,
     .qx-case-bento,
