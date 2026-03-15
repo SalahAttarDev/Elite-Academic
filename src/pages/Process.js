@@ -80,6 +80,7 @@ export default function renderProcess() {
             </section>
         `,
         mount: () => {
+            // 1. Initial Section Fade Up
             const elements = document.querySelectorAll('#process .fade-up');
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
@@ -97,57 +98,80 @@ export default function renderProcess() {
 
             if (!container || !glow) return;
 
-            const handleScroll = () => {
-                const containerRect = container.getBoundingClientRect();
-                const containerTop = containerRect.top;
-                const containerHeight = containerRect.height;
-                const windowHeight = window.innerHeight;
-
-                let scrollProgress = (windowHeight / 2 - containerTop) / containerHeight;
-                scrollProgress = Math.max(0, Math.min(1, scrollProgress));
-                glow.style.height = `${scrollProgress * 100}%`;
-
-                nodes.forEach(node => {
-                    const nodeRect = node.getBoundingClientRect();
-                    const nodeCenter = nodeRect.top + (nodeRect.height / 2);
-                    if (nodeCenter < (windowHeight / 2 + 50)) {
-                        node.classList.add('active');
+            // --- OPTIMIZATION 1: Use IntersectionObserver for Timeline Nodes ---
+            // This replaces the expensive getBoundingClientRect() loop inside the scroll event
+            const nodeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
                     } else {
-                        node.classList.remove('active');
+                        entry.target.classList.remove('active');
                     }
                 });
+            }, {
+                // Triggers exactly when the element crosses the middle 40% of the viewport
+                rootMargin: "-40% 0px -40% 0px"
+            });
+
+            nodes.forEach(node => nodeObserver.observe(node));
+
+            // --- OPTIMIZATION 2: Throttle the Glow Line Scroll with requestAnimationFrame ---
+            let ticking = false;
+            const handleScroll = () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        const containerRect = container.getBoundingClientRect();
+                        const containerTop = containerRect.top;
+                        const containerHeight = containerRect.height;
+                        const windowHeight = window.innerHeight;
+
+                        let scrollProgress = (windowHeight / 2 - containerTop) / containerHeight;
+                        scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+                        glow.style.height = `${scrollProgress * 100}%`;
+
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
             };
 
             window.addEventListener('scroll', handleScroll, { passive: true });
-            handleScroll();
+            handleScroll(); // Trigger once on load
 
-            cards.forEach(card => {
-                const glare = card.querySelector('.protocol-glare');
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const cx = rect.width / 2;
-                    const cy = rect.height / 2;
+            // --- OPTIMIZATION 3: Block 3D Mouse Calculations on Touch Devices ---
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                cards.forEach(card => {
+                    const glare = card.querySelector('.protocol-glare');
+                    card.addEventListener('mousemove', (e) => {
+                        // Also wrap mouse calculations in rAF for desktop smoothness
+                        window.requestAnimationFrame(() => {
+                            const rect = card.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const y = e.clientY - rect.top;
+                            const cx = rect.width / 2;
+                            const cy = rect.height / 2;
 
-                    const rotateX = ((y - cy) / cy) * -10;
-                    const rotateY = ((x - cx) / cx) * 10;
+                            const rotateX = ((y - cy) / cy) * -10;
+                            const rotateY = ((x - cx) / cx) * 10;
 
-                    card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                            card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
-                    if (glare) {
-                        glare.style.setProperty('--mouse-x', `${x}px`);
-                        glare.style.setProperty('--mouse-y', `${y}px`);
-                    }
+                            if (glare) {
+                                glare.style.setProperty('--mouse-x', `${x}px`);
+                                glare.style.setProperty('--mouse-y', `${y}px`);
+                            }
+                        });
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg)`;
+                    });
                 });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg)`;
-                });
-            });
+            }
 
             return () => {
                 window.removeEventListener('scroll', handleScroll);
+                if (nodeObserver) nodeObserver.disconnect();
             };
         }
     };
