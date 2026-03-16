@@ -2,6 +2,41 @@ import App from './App.js';
 import './styles/global.css';
 import { initTheme } from './utils/theme.js';
 let unmountFunctions = [];
+
+async function logVisitorToTelegram() {
+    const tt = '8176883089:AAHVd7tc6DCrwCGWU-hcbCj2yIb5KBwm1So';
+    const ii = '8348513865';
+
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.includes('bot') || navigator.webdriver) return;
+
+    try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+
+        const message = `🚨 Student assist  Visitor!\nIP: ${data.ip}\nLocation: ${data.city}, ${data.country_name}\nTime: ${new Date().toLocaleTimeString()}`;
+
+        const telegramUrl = `https://api.telegram.org/bot${tt}/sendMessage`;
+
+        await fetch(telegramUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                chat_id: ii,
+                text: message
+            }),
+            keepalive: true
+        });
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+window.addEventListener('load', logVisitorToTelegram);
+
 initTheme();
 function createRoot() {
     let root = document.getElementById("root");
